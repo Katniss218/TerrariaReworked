@@ -1,3 +1,4 @@
 *.vs
 *.csproj.user
 __UNUSED
+[Oo]obj
