@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{8298EAB6-0586-4BDA-9483-83624B66B13A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>TerrariaReworked</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\..\Desktop\GRY\Terraria\TModLoader 1.3.5.3\Terraria.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buffs\Oblivion.cs" />
+    <Compile Include="Dusts\BerserkerDust.cs" />
+    <Compile Include="Items\AdamantiteAnvil.cs" />
+    <Compile Include="Items\AdamantiteJackhammer.cs" />
+    <Compile Include="Items\AdamantiteMace.cs" />
+    <Compile Include="Items\AxeofRainforest.cs" />
+    <Compile Include="Items\BerserkerAnvil.cs" />
+    <Compile Include="Items\BerserkerBar.cs" />
+    <Compile Include="Items\BerserkerBlade.cs" />
+    <Compile Include="Items\BerserkerBludgeon.cs" />
+    <Compile Include="Items\BerserkerNightmare.cs" />
+    <Compile Include="Items\BerserkerOre.cs" />
+    <Compile Include="Items\BloodshotLens.cs" />
+    <Compile Include="Items\Blueshift.cs" />
+    <Compile Include="Items\Breakdawn.cs" />
+    <Compile Include="Items\CaesiumForge.cs" />
+    <Compile Include="Items\ChaosTome.cs" />
+    <Compile Include="Items\ClockworkMegashark.cs" />
+    <Compile Include="Items\CobaltJackhammer.cs" />
+    <Compile Include="Items\CobaltMace.cs" />
+    <Compile Include="Items\CopperFlail.cs" />
+    <Compile Include="Items\CopperMace.cs" />
+    <Compile Include="Items\DungeonBow.cs" />
+    <Compile Include="Items\EyeofOblivion.cs" />
+    <Compile Include="Items\FieryMace.cs" />
+    <Compile Include="Items\GiftofStarpower.cs" />
+    <Compile Include="Items\GoldFlail.cs" />
+    <Compile Include="Items\GoldMace.cs" />
+    <Compile Include="Items\HellfireChest.cs" />
+    <Compile Include="Items\IllegalWeaponInstructions.cs" />
+    <Compile Include="Items\ImperviousBrick.cs" />
+    <Compile Include="Items\InstantaniumDrill.cs" />
+    <Compile Include="Items\IronFlail.cs" />
+    <Compile Include="Items\IronMace.cs" />
+    <Compile Include="Items\JungleBow.cs" />
+    <Compile Include="Items\JungleMasher.cs" />
+    <Compile Include="Items\LeadFlail.cs" />
+    <Compile Include="Items\LeadMace.cs" />
+    <Compile Include="Items\MythrilJackhammer.cs" />
+    <Compile Include="Items\MythrilMace.cs" />
+    <Compile Include="Items\OblivionBar.cs" />
+    <Compile Include="Items\OblivionBludgeon.cs" />
+    <Compile Include="Items\OblivionGreatsword.cs" />
+    <Compile Include="Items\OblivionOre.cs" />
+    <Compile Include="Items\Opal.cs" />
+    <Compile Include="Items\OrichalcumJackhammer.cs" />
+    <Compile Include="Items\PalladiumJackhammer.cs" />
+    <Compile Include="Items\PickaxeofDusk.cs" />
+    <Compile Include="Items\PlatinumFlail.cs" />
+    <Compile Include="Items\PlatinumMace.cs" />
+    <Compile Include="Items\SapphirePickaxe.cs" />
+    <Compile Include="Items\SilverFlail.cs" />
+    <Compile Include="Items\SilverMace.cs" />
+    <Compile Include="Items\SoulofBlight.cs" />
+    <Compile Include="Items\StarpowersWill.cs" />
+    <Compile Include="Items\StoneAxe.cs" />
+    <Compile Include="Items\StoneHammer.cs" />
+    <Compile Include="Items\StonePickaxe.cs" />
+    <Compile Include="Items\StoneSword.cs" />
+    <Compile Include="Items\Timechanger.cs" />
+    <Compile Include="Items\TinFlail.cs" />
+    <Compile Include="Items\TinMace.cs" />
+    <Compile Include="Items\TitaniumAnvil.cs" />
+    <Compile Include="Items\TitaniumJackhammer.cs" />
+    <Compile Include="Items\TropicPickaxe.cs" />
+    <Compile Include="Items\TungstenFlail.cs" />
+    <Compile Include="Items\TungstenMace.cs" />
+    <Compile Include="Items\TwilightRepeater.cs" />
+    <Compile Include="Items\VanillaItemChanger.cs" />
+    <Compile Include="Items\WoodenAxe.cs" />
+    <Compile Include="Items\WoodenPickaxe.cs" />
+    <Compile Include="MyWorldUtils.cs" />
+    <Compile Include="NPCs\MyNPC.cs" />
+    <Compile Include="MyWorld.cs" />
+    <Compile Include="MyPlayer.cs" />
+    <Compile Include="NPCs\BloodshotEye.cs" />
+    <Compile Include="NPCs\OblivionEye.cs" />
+    <Compile Include="NPCs\OblivionHead1.cs" />
+    <Compile Include="NPCs\OblivionHead2.cs" />
+    <Compile Include="Projectiles\AdamantiteJackhammer.cs" />
+    <Compile Include="Projectiles\BerserkerDust.cs" />
+    <Compile Include="Projectiles\BerserkerNightmare.cs" />
+    <Compile Include="Projectiles\ChaosBall2.cs" />
+    <Compile Include="Projectiles\CobaltJackhammer.cs" />
+    <Compile Include="Projectiles\CopperFlail.cs" />
+    <Compile Include="Projectiles\CopperSpear.cs" />
+    <Compile Include="Projectiles\DungeonBowProjectile.cs" />
+    <Compile Include="Projectiles\GoldFlail.cs" />
+    <Compile Include="Projectiles\GoldSpear.cs" />
+    <Compile Include="Projectiles\InstantaniumDrill.cs" />
+    <Compile Include="Projectiles\IronFlail.cs" />
+    <Compile Include="Projectiles\IronSpear.cs" />
+    <Compile Include="Projectiles\LeadFlail.cs" />
+    <Compile Include="Projectiles\LeadSpear.cs" />
+    <Compile Include="Projectiles\MythrilJackhammer.cs" />
+    <Compile Include="Projectiles\OblivionFlame.cs" />
+    <Compile Include="Projectiles\OrichalcumJackhammer.cs" />
+    <Compile Include="Projectiles\PalladiumJackhammer.cs" />
+    <Compile Include="Projectiles\PlatinumFlail.cs" />
+    <Compile Include="Projectiles\PlatinumSpear.cs" />
+    <Compile Include="Projectiles\SilverFlail.cs" />
+    <Compile Include="Projectiles\SilverSpear.cs" />
+    <Compile Include="Projectiles\TinFlail.cs" />
+    <Compile Include="Projectiles\TinSpear.cs" />
+    <Compile Include="Projectiles\TitaniumJackhammer.cs" />
+    <Compile Include="Projectiles\TungstenFlail.cs" />
+    <Compile Include="Projectiles\TungstenSpear.cs" />
+    <Compile Include="Projectiles\VanillaProjectileChanger.cs" />
+    <Compile Include="Tiles\AdamantiteAnvil.cs" />
+    <Compile Include="Tiles\BerserkerAnvil.cs" />
+    <Compile Include="Tiles\BerserkerBar.cs" />
+    <Compile Include="Tiles\BerserkerOre.cs" />
+    <Compile Include="Tiles\CaesiumForge.cs" />
+    <Compile Include="Tiles\Coal.cs" />
+    <Compile Include="Items\ArcherEmblem.cs" />
+    <Compile Include="Items\BerserkerEmblem.cs" />
+    <Compile Include="Items\MageEmblem.cs" />
+    <Compile Include="Items\MinionEmblem.cs" />
+    <Compile Include="Items\OverlordEmblem.cs" />
+    <Compile Include="RecipeUtils.cs" />
+    <Compile Include="TerrariaReworked.cs" />
+    <Compile Include="Tiles\HellfireChest.cs" />
+    <Compile Include="Tiles\ImperviousBrick.cs" />
+    <Compile Include="Tiles\OblivionBar.cs" />
+    <Compile Include="Tiles\ResistantWood.cs" />
+    <Compile Include="Tiles\VanillaTileChanger.cs" />
+    <Compile Include="WorldGenUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build.txt" />
+    <Content Include="changelog.txt" />
+    <Content Include="description.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>for /f "tokens=* delims=" %25%25i in ('"$(ProjectDir)..\setup\bin\setup" --steamdir') do set TERRARIASTEAMDIR=%25%25i
+"%25TERRARIASTEAMDIR%25\tModLoaderServerDebug.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

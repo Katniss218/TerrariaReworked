@@ -1,0 +1,8 @@
+author = Katniss
+version = 0.0.3
+displayName = Terraria Reworked
+hideCode = true
+hideResources = true
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+includePDB = true

@@ -1,0 +1,173 @@
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.1 (Alpha) - 'Initial alpha release'
+##		25/05/2019
+##		
+##
+
+- Added 47 items:
+- - Adamantite Anvil
+- - Archer Emblem
+- - Axe of Rainforest
+- - Berserker Anvil
+- - Berserker Bar
+- - Berserker Blade
+- - Berserker Emblem
+- - Berserker Ore
+- - Bloodshot Lens
+- - Blueshift
+- - Breakdawn
+- - Brimstone Block
+- - Caesium Bar
+- - Caesium Forge
+- - Caesium Ore
+- - Clockwork Megalodon
+- - Clockwork Megashark
+- - Dungeon Bow
+- - Gift of Starpower
+- - Hellfire Chest
+- - Illegal Weapon Instructions
+- - Impervious Brick
+- - Instantanium Drill
+- - Jungle Bow
+- - Jungle Masher
+- - Mage Emblem
+- - Megalodon
+- - Minion Emblem
+- - Oblivion Bar
+- - Oblivion Greatsword
+- - Oblivion Ore
+- - Opal
+- - Overlord Emblem
+- - Pickaxe of Dusk
+- - Resistant Wood
+- - Sapphire Pickaxe
+- - Starpower's Will
+- - Stone Axe
+- - Stone Hammer
+- - Stone Pickaxe
+- - Stone Sword
+- - Timechanger
+- - Titanium Anvil
+- - Tropic Pickaxe
+- - Twilight Repeater
+- - Wooden Axe
+- - Wooden Pickaxe
+
+- Added 15 tiles:
+- - Adamantite Anvil
+- - Berserker Anvil
+- - Berserker Bar
+- - Berserker Ore
+- - Brimstone Block
+- - Caesium Bar
+- - Caesium Forge
+- - Caesium Ore
+- - Coal
+- - Hellfire Chest
+- - Impervious Brick
+- - Oblivion Bar
+- - Oblivion Ore
+- - Opal
+- - Resistant Wood
+
+- Added 1 npc:
+- - Bloodshot Eye
+
+- Added 1 buff:
+- - Oblivion
+
+
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.2 (Alpha) - 'Superhardmode Update'
+##		08/06/2019
+##		
+##
+
+- Added superhardmode
+
+- Added 21 items:
+- - Adamantite Mace
+- - Berserker Bludgeon
+- - Berserker Nightmare
+- - Chaos Tome
+- - Cobalt Mace
+- - Copper Mace
+- - Eye of Oblivion
+- - Fiery Mace
+- - Gold Mace
+- - Iron Mace
+- - Lead Mace
+- - Mythril Mace
+- - Oblivion Bludgeon
+- - Orichalcum Mace
+- - Palladium Mace
+- - Platinum Mace
+- - Silver Mace
+- - Soul of Blight
+- - Tin Mace
+- - Titanium Mace
+- - Tungsten Mace
+
+- Added 1 NPC:
+- - Oblivion Eye
+
+- Lesser changes & fixes:
+- - Berserker and Oblivion bars (placed) no longer duplicate
+- - Changed Berserker Blade sprite
+- - Resistant Wood now takes pickaxe to mine (min. 200% power)
+- - Changed Berserker Blade's use time from 12 to 15
+- - Changed Clockwork Megashark and Clockwork Megalodon sprites
+- - Changed Minishark texture
+- - Tweaked Illegal Weapon Instructions sprite
+- - Berserker Blade no longer inflicts On Fire debuff
+- - Dungeon Bow now shoots a stream of water instead of normal arrows
+- - Changed Sunfury sprite
+- - Changed Bloodshot Eye sprite
+- - Tweaked Stone Sword sprite
+- - Changed Caesium Forge sprite
+- - Tweaked Impervious Brick (placed) sprite
+- - Changed all Spell Tome sprites
+- - Changed Megalodon and Clockwork Megalodon Sprites
+- - Changed Berserker-Tier items' projectile damage to 75
+
+
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.3 (Alpha)
+##		
+##		
+##
+
+- Added a placeholder 'generated structure' for the Hellcastle.
+- Changed a lot of sprites (both vanilla & modded)
+
+- Added 22 items:
+- - Adamantite Jackhammer
+- - Cobalt Jackhammer
+- - Copper Flail
+- - Copper Spear
+- - Gold Flail
+- - Gold Spear
+- - Iron Flail
+- - Iron Spear
+- - Lead Flail
+- - Lead Spear
+- - Mythril Jackhammer
+- - Orichalcum Jackhammer
+- - Palladium Jackhammer
+- - Platinum Flail
+- - Platinum Spear
+- - Silver Flail
+- - Silver Spear
+- - Tin Flail
+- - Tin Spear
+- - Titanium Jackhammer
+- - Tungsten Flail
+- - Tungsten Spear
+
+- Added 2 NPCs:
+- - Oblivion Head 1
+- - Oblivion Head 2
+
+- Lesser changes & fixes:
+- - New pixie sprite now renders properly
+- - Fixed crafting recipe for the Eye of Oblivion

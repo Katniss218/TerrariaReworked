@@ -1,0 +1,5 @@
+Terraria Reworked aims to change many aspects of Terraria.
+This file will evolve as the mod development progresses.
+
+For the most up-to-date info, check out the wiki! (WARNING! It's so up-to-date, it may contain information about stuff not yet implemented)
+https://terrariareworked.fandom.com/wiki/TerrariaReworked_Wiki
