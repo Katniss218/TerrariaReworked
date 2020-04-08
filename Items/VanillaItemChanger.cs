@@ -15,9 +15,9 @@ namespace TerrariaReworked.Items
 		//override void 
 		public override void SetDefaults( Item item )
 		{
-			for( int i = 0; i < TerrariaReworked.disabledItems.Length; i++ )
+			for( int i = 0; i < ModMain.disabledItems.Length; i++ )
 			{
-				if( TerrariaReworked.disabledItems[i] == item.type )
+				if( ModMain.disabledItems[i] == item.type )
 				{
 					// don't set the item to null. crashes the game.
 					item.SetNameOverride( "This item is disabled by TerrariaReworked!" );

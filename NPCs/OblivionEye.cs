@@ -348,7 +348,7 @@ namespace TerrariaReworked.NPCs
 
 		public override bool PreDraw( SpriteBatch spriteBatch, Color drawColor )
 		{
-			TerrariaReworked.DrawShadowSprites( npc, 5, 2 );
+			ModMain.DrawShadowSprites( npc, 5, 2 );
 
 			return true;
 		}

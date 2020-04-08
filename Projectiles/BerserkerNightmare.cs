@@ -36,7 +36,7 @@ namespace TerrariaReworked.Projectiles
 			{
 				Rectangle hitbox = this.projectile.getRect();
 				Vector2 randomInside = new Vector2( hitbox.X + Main.rand.Next( 0, hitbox.Width ), hitbox.Y + Main.rand.Next( 0, hitbox.Height ) );
-				Projectile.NewProjectile( randomInside, Vector2.Zero, mod.ProjectileType( "BerserkerDust" ), TerrariaReworked.BerserkerDustDamage, 1, this.projectile.owner, 0, 0 );
+				Projectile.NewProjectile( randomInside, Vector2.Zero, mod.ProjectileType( "BerserkerDust" ), ModMain.BerserkerDustDamage, 1, this.projectile.owner, 0, 0 );
 			}
 			this.projectile.rotation += 0.8f * (float)projectile.direction;
 			if( Main.rand.Next( 3 ) == 0 )

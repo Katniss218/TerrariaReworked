@@ -118,10 +118,10 @@
     <Compile Include="Items\WoodenAxe.cs" />
     <Compile Include="Items\WoodenPickaxe.cs" />
     <Compile Include="MyWorldUtils.cs" />
-    <Compile Include="NPCs\MyNPC.cs" />
     <Compile Include="MyWorld.cs" />
     <Compile Include="MyPlayer.cs" />
     <Compile Include="NPCs\BloodshotEye.cs" />
+    <Compile Include="NPCs\DisabledNPCModifier.cs" />
     <Compile Include="NPCs\OblivionEye.cs" />
     <Compile Include="NPCs\OblivionHead1.cs" />
     <Compile Include="NPCs\OblivionHead2.cs" />
@@ -172,6 +172,7 @@
     <Compile Include="Tiles\OblivionBar.cs" />
     <Compile Include="Tiles\ResistantWood.cs" />
     <Compile Include="Tiles\VanillaTileChanger.cs" />
+    <Compile Include="WorldGenPasses.cs" />
     <Compile Include="WorldGenUtils.cs" />
   </ItemGroup>
   <ItemGroup>

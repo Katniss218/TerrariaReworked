@@ -54,13 +54,11 @@ namespace TerrariaReworked.Items
 		{
 			// Add Onfire buff to the NPC for 1 second
 			// 60 frames = 1 second
-			if( Main.rand.Next( 3 ) != 0 )
-				target.AddBuff( BuffID.Confused, 120 );
-			if( Main.rand.Next( 2 ) == 0 )
+			if( Main.rand.Next( 4 ) != 0 )
 			{
-				// Add the buff 
-				target.AddBuff( mod.BuffType( "Oblivion" ), 240 );
+				target.AddBuff( BuffID.Confused, 120 );
 			}
+			target.AddBuff( mod.BuffType( "Oblivion" ), 240 );
 		}
 	}
 }

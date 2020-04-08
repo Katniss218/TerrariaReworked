@@ -52,11 +52,8 @@ namespace TerrariaReworked.Items
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			if (Main.rand.Next(2) == 0)
-			{
 				// Add the buff 
 				target.AddBuff(mod.BuffType("Oblivion"), 240);
-			}
 		}
 	}
 }

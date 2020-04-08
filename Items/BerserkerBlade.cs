@@ -62,7 +62,7 @@ namespace TerrariaReworked.Items
 			vel.X += (0.05f * Main.rand.Next( -spread, spread ));
 			vel.Y += (0.05f * Main.rand.Next( -spread, spread ));
 
-			Projectile.NewProjectile( randomInside, vel, mod.ProjectileType( "BerserkerDust" ), TerrariaReworked.BerserkerDustDamage, 3, player.whoAmI );
+			Projectile.NewProjectile( randomInside, vel, mod.ProjectileType( "BerserkerDust" ), ModMain.BerserkerDustDamage, 3, player.whoAmI );
 
 		}
 

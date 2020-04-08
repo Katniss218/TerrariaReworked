@@ -1,16 +1,13 @@
-using Katniss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace TerrariaReworked
 {
-	class TerrariaReworked : Mod
+	public class ModMain : Mod
 	{
 		//private static Recipe emptyRecipe;
 		public const int BerserkerDustDamage = 75;
@@ -55,6 +52,11 @@ namespace TerrariaReworked
 			ItemID.PickaxeAxe,
 			ItemID.Picksaw,
 
+			ItemID.LunarHamaxeNebula,
+			ItemID.LunarHamaxeSolar,
+			ItemID.LunarHamaxeStardust,
+			ItemID.LunarHamaxeVortex,
+
 			ItemID.Katana,
 			ItemID.Gatligator,
 			ItemID.DD2ElderCrystal,
@@ -67,12 +69,12 @@ namespace TerrariaReworked
 			NPCID.DukeFishron
 		};
 
-		public static TerrariaReworked instance { get; private set; }
+		public static ModMain instance { get; private set; }
 
 		public static int hellcastleX;
 		public static int hellcastleY;
 
-		public TerrariaReworked()
+		public ModMain()
 		{
 			// By default, all Autoload properties are True. You only need to change this if you know what you are doing.
 			Properties = new ModProperties()
@@ -86,7 +88,7 @@ namespace TerrariaReworked
 
 		public override void Load()
 		{
-			instance = (TerrariaReworked)ModLoader.GetMod( "TerrariaReworked" );
+			instance = (ModMain)ModLoader.GetMod( "TerrariaReworked" );
 		}
 
 		public override void Unload()
