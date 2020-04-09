@@ -8,7 +8,7 @@ namespace TerrariaReworked.Tiles
 	{
 		public override void SetDefaults()
 		{
-			Main.tileMergeDirt[mod.TileType( "ImperviousBrick" )] = true;
+			Main.tileMergeDirt[mod.TileType( "ResistantWood" )] = true;
 			this.minPick = 220;
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
@@ -26,6 +26,5 @@ namespace TerrariaReworked.Tiles
 		{
 			num = fail ? 1 : 3;
 		}
-		
 	}
 }

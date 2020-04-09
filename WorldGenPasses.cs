@@ -94,7 +94,7 @@ namespace TerrariaReworked
 			JungleItemCount = 0;
 		}
 
-		public static List<GenPass> GetDefaultWorldGenPasses( List<GenPass> tasks, ref float totalWeight )
+		public static void GetDefaultWorldGenPasses( List<GenPass> tasks, ref float totalWeight )
 		{
 			tasks.Clear();
 
@@ -198,20 +198,21 @@ namespace TerrariaReworked
 			//tasks.Add( new PassLegacy( "Micro Biomes", MicroBiomesFunc ) );
 			tasks.Add( new PassLegacy( "Final Cleanup", FinalCleanupFunc ) );
 			tasks.Add( new PassLegacy( "Hellcastle", HellcastleFunc ) );
-
-			return tasks;
+			//tasks.Add( new PassLegacy( "HMGems", HMGemsFunc ) );
 		}
 
-		public static List<GenPass> GetDefaultHardmodePasses()
+		public static void GetDefaultHardmodePasses( List<GenPass> tasks, ref float totalWeight )
 		{
+			//tasks.Clear();
 
-			return null;
+			tasks.Add( new PassLegacy( "HMGems", HMGemsFunc ) );
 		}
 
-		public static List<GenPass> GetDefaultSuperhardmodePasses()
+		public static void GetDefaultSuperhardmodePasses( List<GenPass> tasks, ref float totalWeight )
 		{
+			tasks.Clear();
 
-			return null;
+			tasks.Add( new PassLegacy( "SHMShinies", SHMShiniesFunc ) );
 		}
 		
 		private static void ResetFunc( GenerationProgress progress )
@@ -2573,48 +2574,48 @@ namespace TerrariaReworked
 		private static void GemsFunc( GenerationProgress progress )
 		{
 			progress.Message = Lang.gen[23].Value;
-			for( int k = 63; k <= 68; k++ )
+
+			for( int type = 63; type <= 68; type++ ) // run code for each gem type.
 			{
-				float num = 0f;
-				if( k == 67 )
+				float count = 0f;
+				if( type == 67 )
 				{
-					num = (float)Main.maxTilesX * 0.5f;
+					count = (float)Main.maxTilesX * 0.5f;
 				}
-				else if( k == 66 )
+				else if( type == 66 )
 				{
-					num = (float)Main.maxTilesX * 0.45f;
+					count = (float)Main.maxTilesX * 0.45f;
 				}
-				else if( k == 63 )
+				else if( type == 63 )
 				{
-					num = (float)Main.maxTilesX * 0.3f;
+					count = (float)Main.maxTilesX * 0.3f;
 				}
-				else if( k == 65 )
+				else if( type == 65 )
 				{
-					num = (float)Main.maxTilesX * 0.25f;
+					count = (float)Main.maxTilesX * 0.25f;
 				}
-				else if( k == 64 )
+				else if( type == 64 )
 				{
-					num = (float)Main.maxTilesX * 0.1f;
+					count = (float)Main.maxTilesX * 0.1f;
 				}
-				else if( k == 68 )
+				else if( type == 68 )
 				{
-					num = (float)Main.maxTilesX * 0.05f;
+					count = (float)Main.maxTilesX * 0.05f;
 				}
-				num *= 0.2f;
-				int num2 = 0;
-				while( (float)num2 < num )
+				count *= 0.2f;
+				for( int i = 0; i < count; i++ )
 				{
-					int num3 = WorldGen.genRand.Next( 0, Main.maxTilesX );
-					int num4 = WorldGen.genRand.Next( (int)Main.worldSurface, Main.maxTilesY );
-					while( Main.tile[num3, num4].type != 1 )
+					int x = WorldGen.genRand.Next( 0, Main.maxTilesX );
+					int y = WorldGen.genRand.Next( (int)Main.worldSurface, Main.maxTilesY );
+					while( Main.tile[x, y].type != 1 ) // find stone block
 					{
-						num3 = WorldGen.genRand.Next( 0, Main.maxTilesX );
-						num4 = WorldGen.genRand.Next( (int)Main.worldSurface, Main.maxTilesY );
+						x = WorldGen.genRand.Next( 0, Main.maxTilesX );
+						y = WorldGen.genRand.Next( (int)Main.worldSurface, Main.maxTilesY );
 					}
-					WorldGenUtils.TileRunner( num3, num4, (double)WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), k, false, 0f, 0f, false, true );
-					num2++;
+					WorldGenUtils.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), type );
 				}
 			}
+
 			for( int l = 0; l < 2; l++ )
 			{
 				int num5 = 1;
@@ -6394,6 +6395,45 @@ namespace TerrariaReworked
 				int y = WorldGen.genRand.Next( 90, (int)worldSurfaceMin );
 				WorldGenUtils.WallRunner( x, y, WorldGen.genRand.Next( 10, 30 ), WorldGen.genRand.Next( 30, 75 ), WallID.Cloud, false, 6f, 0.7f, false, false );
 			}
+		}
+
+
+		private static void HMGemsFunc( GenerationProgress progress )
+		{
+			//progress.Message = Lang.gen[23].Value;
+
+			float count = Main.maxTilesX * 0.1f;
+			count *= 0.2f;
+
+			for( int i = 0; i < count; i++ )
+			{
+				int x = WorldGen.genRand.Next( 0, Main.maxTilesX );
+				int y = WorldGen.genRand.Next( (int)Main.rockLayer, Main.maxTilesY );
+				while( Main.tile[x, y].type != 1 ) // find stone block
+				{
+					x = WorldGen.genRand.Next( 0, Main.maxTilesX );
+					y = WorldGen.genRand.Next( (int)Main.rockLayer, Main.maxTilesY );
+				}
+				WorldGenUtils.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), ModMain.instance.TileType("OpalBlock") );
+			}
+		}
+
+
+
+		private static void SHMShiniesFunc( GenerationProgress progress )
+		{
+			// worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
+			//progress.Message = "Superhardmode Shinies";
+
+
+			// COPPER (top, mid, - )
+
+			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000070); i++ )
+				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)(Main.maxTilesY * 0.8), (int)(Main.maxTilesY * 0.9) ), WorldGen.genRand.Next( 4, 5 ), WorldGen.genRand.Next( 3, 5 ), ModMain.instance.TileType( "Cinderplate" ) );
+
+			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000070); i++ )
+				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)(Main.maxTilesY * 0.6), (int)Main.maxTilesY ), WorldGen.genRand.Next( 3, 5 ), WorldGen.genRand.Next( 3, 6 ), ModMain.instance.TileType( "Cinderplate" ) );
+			
 		}
 	}
 }

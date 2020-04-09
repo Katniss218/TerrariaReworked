@@ -17,7 +17,8 @@ namespace TerrariaReworked.Tiles
 			//dustType = mod.DustType("Sparkle");
 			drop = mod.ItemType( "BrimstoneBlock" );
 			AddMapEntry(new Color(15, 15, 15));
-			//SetModTree(new ExampleTree());
+			this.soundType = 21; // metallic 'click' sound on break.
+								 //SetModTree(new ExampleTree());
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num)

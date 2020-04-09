@@ -47,11 +47,11 @@ namespace TerrariaReworked.Items
 				}
 			}
 		}
-		
+
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe( this.mod );
-			recipe.AddIngredient( mod.ItemType("GiftofStarpower"), 1 );
+			recipe.AddIngredient( mod.ItemType( "GiftofStarpower" ), 1 );
 			recipe.AddIngredient( ItemID.CharmofMyths, 1 );
 			//recipe.AddIngredient( ItemID.SorcererEmblem, 1 );
 			recipe.AddTile( TileID.TinkerersWorkbench );

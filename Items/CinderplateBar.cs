@@ -3,17 +3,17 @@ using Terraria.ModLoader;
 
 namespace TerrariaReworked.Items
 {
-	public class BerserkerAnvil : ModItem
+	public class CinderplateBar : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			this.Tooltip.SetDefault( "Used to craft endgame items" );
+			//this.Tooltip.SetDefault( "'The red is soft, the blue is hard.'" );
 		}
 
 		public override void SetDefaults()
 		{
-			this.item.width = 28;
-			this.item.height = 14;
+			this.item.width = 30;
+			this.item.height = 24;
 			this.item.maxStack = 99;
 			this.item.useTurn = true;
 			this.item.autoReuse = true;
@@ -22,15 +22,16 @@ namespace TerrariaReworked.Items
 			this.item.useStyle = 1;
 			this.item.consumable = true;
 			this.item.value = 150;
-			this.item.createTile = mod.TileType( "BerserkerAnvil" );
+			this.item.createTile = this.mod.TileType( "CinderplateBar" );
 			this.item.placeStyle = 0;
 		}
-		
+
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe( mod );
-			recipe.AddIngredient( mod.ItemType( "BerserkerBar" ), 10 );
-			recipe.AddTile( TileID.MythrilAnvil );
+			ModRecipe recipe = new ModRecipe( this.mod );
+			recipe.AddIngredient( null, "Cinderplate", 6 );
+			recipe.AddIngredient( ItemID.Obsidian, 1 );
+			recipe.AddTile( mod.TileType( "CaesiumForge" ) );
 			recipe.SetResult( this );
 			recipe.AddRecipe();
 		}

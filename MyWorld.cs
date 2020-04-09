@@ -253,8 +253,10 @@ namespace TerrariaReworked
 			// Hardmode Walls
 			// Hardmode Announcement
 
-			list.Clear();
+			//list.Clear();
 
+			float totalWeight = 1;
+			WorldGenPasses.GetDefaultHardmodePasses( list, ref totalWeight );
 			// disables the message.
 			// disables generation of the hallow.
 
@@ -266,9 +268,8 @@ namespace TerrariaReworked
 		/// </summary>
 		public static void ModifySuperhardmodeTasks( List<GenPass> list )
 		{
-			list.Clear();
-
-			// add passes.
+			float totalWeight = 5;
+			WorldGenPasses.GetDefaultSuperhardmodePasses( list, ref totalWeight );
 		}
 
 		public override void ModifyWorldGenTasks( List<GenPass> tasks, ref float totalWeight )

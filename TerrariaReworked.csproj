@@ -57,12 +57,14 @@
     <Compile Include="Items\BerserkerBlade.cs" />
     <Compile Include="Items\BerserkerBludgeon.cs" />
     <Compile Include="Items\BerserkerNightmare.cs" />
+    <Compile Include="Items\Cinderplate.cs" />
     <Compile Include="Items\BerserkerOre.cs" />
     <Compile Include="Items\BloodshotLens.cs" />
     <Compile Include="Items\Blueshift.cs" />
     <Compile Include="Items\Breakdawn.cs" />
     <Compile Include="Items\CaesiumForge.cs" />
     <Compile Include="Items\ChaosTome.cs" />
+    <Compile Include="Items\CinderplateBar.cs" />
     <Compile Include="Items\ClockworkMegashark.cs" />
     <Compile Include="Items\CobaltJackhammer.cs" />
     <Compile Include="Items\CobaltMace.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Items\VanillaItemChanger.cs" />
     <Compile Include="Items\WoodenAxe.cs" />
     <Compile Include="Items\WoodenPickaxe.cs" />
+    <Compile Include="ModMain.cs" />
     <Compile Include="MyWorldUtils.cs" />
     <Compile Include="MyWorld.cs" />
     <Compile Include="MyPlayer.cs" />
@@ -125,6 +128,8 @@
     <Compile Include="NPCs\OblivionEye.cs" />
     <Compile Include="NPCs\OblivionHead1.cs" />
     <Compile Include="NPCs\OblivionHead2.cs" />
+    <Compile Include="Prefixes\AccessoryPrefixes.cs" />
+    <Compile Include="Prefixes\AEUpdate1.cs" />
     <Compile Include="Projectiles\AdamantiteJackhammer.cs" />
     <Compile Include="Projectiles\BerserkerDust.cs" />
     <Compile Include="Projectiles\BerserkerNightmare.cs" />
@@ -157,8 +162,11 @@
     <Compile Include="Tiles\AdamantiteAnvil.cs" />
     <Compile Include="Tiles\BerserkerAnvil.cs" />
     <Compile Include="Tiles\BerserkerBar.cs" />
+    <Compile Include="Tiles\BrimstoneBlock.cs" />
+    <Compile Include="Tiles\Cinderplate.cs" />
     <Compile Include="Tiles\BerserkerOre.cs" />
     <Compile Include="Tiles\CaesiumForge.cs" />
+    <Compile Include="Tiles\CinderplateBar.cs" />
     <Compile Include="Tiles\Coal.cs" />
     <Compile Include="Items\ArcherEmblem.cs" />
     <Compile Include="Items\BerserkerEmblem.cs" />
@@ -166,10 +174,12 @@
     <Compile Include="Items\MinionEmblem.cs" />
     <Compile Include="Items\OverlordEmblem.cs" />
     <Compile Include="RecipeUtils.cs" />
-    <Compile Include="TerrariaReworked.cs" />
     <Compile Include="Tiles\HellfireChest.cs" />
     <Compile Include="Tiles\ImperviousBrick.cs" />
     <Compile Include="Tiles\OblivionBar.cs" />
+    <Compile Include="Tiles\OblivionOre.cs" />
+    <Compile Include="Tiles\Opal.cs" />
+    <Compile Include="Tiles\OpalBlock.cs" />
     <Compile Include="Tiles\ResistantWood.cs" />
     <Compile Include="Tiles\VanillaTileChanger.cs" />
     <Compile Include="WorldGenPasses.cs" />

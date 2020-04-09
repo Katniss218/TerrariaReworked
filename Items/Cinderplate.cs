@@ -1,13 +1,16 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 // If you are using c# 6, you can use: "using static Terraria.Localization.GameCulture;" which would mean you could just write "DisplayName.AddTranslation(German, "");"
+using Terraria.Localization;
 
 namespace TerrariaReworked.Items
 {
-	public class Opal : ModItem
+	public class Cinderplate : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault( "'It's so sparkly'" );
+			this.Tooltip.SetDefault( "Melts your hands" );
 		}
 
 		public override void SetDefaults()
@@ -22,7 +25,7 @@ namespace TerrariaReworked.Items
 			item.useStyle = 1;
 			item.rare = 8;
 			item.consumable = true;
-			item.createTile = mod.TileType( "Opal" );
+			item.createTile = mod.TileType("Cinderplate");
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace TerrariaReworked.Items
 			this.item.melee = true;
 			this.item.width = 60;
 			this.item.height = 22;
-			this.item.useTime = 14;
+			this.item.useTime = 8;
 			this.item.noMelee = true;
 			item.channel = true;
 			item.noUseGraphic = true;
@@ -34,14 +34,5 @@ namespace TerrariaReworked.Items
 			this.item.UseSound = SoundID.Item23;
 			this.item.autoReuse = true;
 		}
-		/*
-		public override void MeleeEffects( Player player, Rectangle hitbox )
-		{
-			if( Main.rand.Next( 3 ) == 0 )
-			{
-				//int dust = Dust.NewDust( new Vector2( hitbox.X, hitbox.Y ), hitbox.Width, hitbox.Height, 59, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 0.2f, 0, new Color( 0, 0, 1 ), 1f );
-				//Main.dust[dust].noGravity = true;
-			}
-		}*/
 	}
 }
