@@ -214,7 +214,7 @@ namespace TerrariaReworked
 
 			tasks.Add( new PassLegacy( "SHMShinies", SHMShiniesFunc ) );
 		}
-		
+
 		private static void ResetFunc( GenerationProgress progress )
 		{
 			Liquid.ReInit();
@@ -280,7 +280,7 @@ namespace TerrariaReworked
 			{
 				MyWorld.evilCombo = EvilCombo.Crimson;
 			}
-			
+
 			if( jungleShrineTile == 0 )
 			{
 				jungleShrineTile = 45;
@@ -1532,12 +1532,12 @@ namespace TerrariaReworked
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerMax, Main.maxTilesY ), (double)WorldGen.genRand.Next( 2, 5 ), WorldGen.genRand.Next( 2, 5 ), 123, false, 0f, 0f, false, true );
 			}
 		}
-		
+
 		private static void ShiniesFunc( GenerationProgress progress )
 		{
 			// worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
 			progress.Message = "Shinies";
-			
+
 
 			// COPPER (top, mid, - )
 
@@ -2123,7 +2123,7 @@ namespace TerrariaReworked
 							int chasmY = (int)worldSurfaceMin;
 							while( (double)chasmY < Main.worldSurface - 1.0 )
 							{
-								if( Main.tile[chasmX, chasmY].active() || (Main.tile[chasmX, chasmY].wall > 0 && Main.tile[chasmX,chasmY].wall != WallID.Cloud) )
+								if( Main.tile[chasmX, chasmY].active() || (Main.tile[chasmX, chasmY].wall > 0 && Main.tile[chasmX, chasmY].wall != WallID.Cloud) )
 								{
 									if( chasmX == xLonger )
 									{
@@ -5216,7 +5216,7 @@ namespace TerrariaReworked
 					}
 				}
 			}
-			
+
 			WorldGen.AddPlants();
 		}
 
@@ -5271,7 +5271,7 @@ namespace TerrariaReworked
 				}
 			}
 		}
-		
+
 		private static void VinesFunc( GenerationProgress progress )
 		{
 			progress.Message = Lang.gen[43].Value;
@@ -6310,7 +6310,7 @@ namespace TerrariaReworked
 				}
 			}
 		}
-		
+
 		private static void HellcastleFunc( GenerationProgress progress )
 		{
 			progress.Message = "Generating Hellcastle...";
@@ -6342,28 +6342,51 @@ namespace TerrariaReworked
 
 			int x = dungeonSide == -1 ? (Main.maxTilesX / 4) * 3 : (Main.maxTilesX / 4) * 1;
 			int y = Main.maxTilesY - 155;
-			int width = 100;
-			int height = 60;
-			int width2 = width / 2;
-			int height2 = height / 2;
-			for( int i = x - width2; i < x + width2; i++ )
+			int width = 200;
+			int height = 80;
+			int wallThickness = 4;
+
+			int halfWidth = width / 2;
+			int halfHeight = height / 2;
+
+			Point topLeft = new Point( x - halfWidth, y - halfHeight );
+			Point topRight = new Point( x + halfWidth, y - halfHeight );
+			Point bottomLeft = new Point( x - halfWidth, y + halfHeight );
+			Point bottomRight = new Point( x + halfWidth, y + halfHeight );
+
+			int top = y - halfHeight;
+			int bottom = y + halfHeight;
+			
+			if( x < halfWidth )
+				x = halfWidth;
+			if( x > Main.maxTilesX - halfWidth )
+				x = Main.maxTilesX - halfWidth;
+
+			// general box shape.
+
+			for( int i = x - halfWidth; i < x + halfWidth; i++ )
 			{
-				for( int j = y - height2; j < y + height2; j++ )
+				for( int j = y - halfHeight; j < y + halfHeight; j++ )
 				{
 					WorldGen.PlaceTile( i, j, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
 					Main.tile[i, j].slope( 0 );
 				}
 			}
-			for( int i = x - width2 + 4; i < x + width2 - 4; i++ )
+
+			// fill with air (interior) and walls.
+
+			for( int i = x - halfWidth + wallThickness; i < x + halfWidth - wallThickness; i++ )
 			{
-				for( int j = y - height2 + 4; j < y + height2 - 4; j++ )
+				for( int j = y - halfHeight + wallThickness; j < y + halfHeight - wallThickness; j++ )
 				{
 					WorldGen.PlaceWall( i, j, WallID.ObsidianBrickUnsafe );
 					WorldGen.KillTile( i, j );
 				}
 			}
 
-			for( int i = x - width2; i < x - width2 + 4; i++ )
+			// block entrances.
+
+			for( int i = x - halfWidth; i < x - halfWidth + wallThickness; i++ )
 			{
 				for( int j = y - 2; j < y + 2; j++ )
 				{
@@ -6371,7 +6394,7 @@ namespace TerrariaReworked
 					Main.tile[i, j].slope( 0 );
 				}
 			}
-			for( int i = x + width2 - 4; i < x + width2; i++ )
+			for( int i = x + halfWidth - wallThickness; i < x + halfWidth; i++ )
 			{
 				for( int j = y - 2; j < y + 2; j++ )
 				{
@@ -6379,16 +6402,49 @@ namespace TerrariaReworked
 					Main.tile[i, j].slope( 0 );
 				}
 			}
+
+			// floors
+
+			for( int i = x - halfWidth + wallThickness + 4; i < x + halfWidth - wallThickness - 4; i++ )
+			{
+				int platY = bottom - 40;
+				WorldGen.PlaceTile( i, platY, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
+				Main.tile[i, platY].slope( 0 );
+
+				platY = bottom - 30;
+				WorldGen.PlaceTile( i, platY, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
+				Main.tile[i, platY].slope( 0 );
+
+				platY = bottom - 20;
+				WorldGen.PlaceTile( i, platY, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
+				Main.tile[i, platY].slope( 0 );
+			}
+
+			for( int i = x - 5; i < x + 5; i++ )
+			{
+				int platY = bottom - wallThickness;
+				WorldGen.PlaceTile( i, platY, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
+				Main.tile[i, platY].slope( 0 );
+			}
+			for( int i = x - 4; i < x + 4; i++ )
+			{
+				int platY = bottom - wallThickness - 1;
+				WorldGen.PlaceTile( i, platY, ModMain.instance.TileType( "ImperviousBrick" ), false, true );
+				Main.tile[i, platY].slope( 0 );
+			}
+
+			WorldGen.Place3x2( x, bottom - wallThickness - 2, TileID.DemonAltar );
+
 			for( int i = 0; i < 3; i++ )
 			{
-				generateUpperLootRooms( WorldGen.genRand.Next( x - width2, x + width2 ), y - height2 - WorldGen.genRand.Next( 5, 20 ) );
+				generateUpperLootRooms( WorldGen.genRand.Next( x - halfWidth, x + halfWidth ), y - halfHeight - WorldGen.genRand.Next( 5, 20 ) );
 			}
 		}
 
 		private static void CloudsFunc( GenerationProgress progress )
 		{
-			progress.Message = Lang.gen[6].Value;
-			
+			progress.Message = "Generating Clouds";
+
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000090); i++ )
 			{
 				int x = WorldGen.genRand.Next( 10, Main.maxTilesX - 10 );
@@ -6414,7 +6470,7 @@ namespace TerrariaReworked
 					x = WorldGen.genRand.Next( 0, Main.maxTilesX );
 					y = WorldGen.genRand.Next( (int)Main.rockLayer, Main.maxTilesY );
 				}
-				WorldGenUtils.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), ModMain.instance.TileType("OpalBlock") );
+				WorldGenUtils.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), ModMain.instance.TileType( "OpalBlock" ) );
 			}
 		}
 
@@ -6433,7 +6489,7 @@ namespace TerrariaReworked
 
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000070); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)(Main.maxTilesY * 0.6), (int)Main.maxTilesY ), WorldGen.genRand.Next( 3, 5 ), WorldGen.genRand.Next( 3, 6 ), ModMain.instance.TileType( "Cinderplate" ) );
-			
+
 		}
 	}
 }

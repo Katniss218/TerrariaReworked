@@ -13,7 +13,7 @@ namespace TerrariaReworked.Tiles
 			Main.tileMergeDirt[this.Type] = true;
 			Main.tileBlockLight[this.Type] = true;
 			Main.tileLighted[this.Type] = true;
-
+			
 			// tileShine: Copper Ore - 1100, Iron - 1150, Silver - 1050, Gold - 1000, Demonite - 1150, Hellstone - 0
 			// tileShine: Tin Ore - 1125, Lead - 1075, Tungsten - 1025, Platinum - 975, Crimtane - 1150
 			Main.tileShine[this.Type] = 1450;

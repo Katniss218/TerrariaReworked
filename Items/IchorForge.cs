@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace TerrariaReworked.Items
 {
-	public class CaesiumForge : ModItem
+	public class IchorForge : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,17 +22,20 @@ namespace TerrariaReworked.Items
 			this.item.useStyle = 1;
 			this.item.consumable = true;
 			this.item.value = 150;
-			this.item.createTile = mod.TileType( "CaesiumForge" );
-			this.item.placeStyle = 0;
+			this.item.createTile = mod.TileType( "CursedForge" );
+			this.item.placeStyle = 1;
 		}
-		/*
+		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe( mod );
-			recipe.AddIngredient( ItemID.TitaniumBar, 10 );
-			recipe.AddTile( TileID.MythrilAnvil );
+			recipe.AddRecipeGroup( "TerrariaReworked:AdamantiteForges", 1 );
+			recipe.AddIngredient( ItemID.ChlorophyteOre, 50 );
+			recipe.AddIngredient( ItemID.Ichor, 25 );
+			recipe.AddIngredient( ItemID.Vertebrae, 5 );
+			recipe.AddTile( ModMain.instance.TileType("AdamantiteAnvil" ) );
 			recipe.SetResult( this );
 			recipe.AddRecipe();
-		}*/
+		}
 	}
 }

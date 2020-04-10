@@ -14,17 +14,21 @@ namespace TerrariaReworked.Tiles
 			Main.tileMergeDirt[Type] = true;
 			Main.tileBlockLight[Type] = true;
 			Main.tileLighted[Type] = true;
+
 			//dustType = mod.DustType("Sparkle");
 			drop = mod.ItemType( "BrimstoneBlock" );
-			AddMapEntry(new Color(15, 15, 15));
+			AddMapEntry( new Color( 15, 15, 15 ) );
 			this.soundType = 21; // metallic 'click' sound on break.
-								 //SetModTree(new ExampleTree());
 		}
 
-		public override void NumDust(int i, int j, bool fail, ref int num)
+		public override void NumDust( int i, int j, bool fail, ref int num )
 		{
 			num = fail ? 1 : 3;
 		}
-		
+
+		public override bool CanKillTile( int i, int j, ref bool blockDamaged )
+		{
+			return MyWorld.downedGargouardian;
+		}
 	}
 }

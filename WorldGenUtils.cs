@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -95,10 +96,10 @@ namespace TerrariaReworked
 								if( @override || !Main.tile[x, y].active() )
 								{
 									Tile tile = Main.tile[x, y];
-									bool isMudBlock = Main.tileStone[type] && tile.type != 1;
+									bool placementBlocked = Main.tileStone[type] && tile.type != 1;
 									if( !TileID.Sets.CanBeClearedDuringGeneration[(int)tile.type] )
 									{
-										isMudBlock = true;
+										placementBlocked = true;
 									}
 									ushort typeAtXY = tile.type;
 									if( typeAtXY <= 147 )
@@ -109,30 +110,30 @@ namespace TerrariaReworked
 											{
 												if( typeAtXY == 45 )
 												{
-													isMudBlock = true;
+													placementBlocked = true;
 												}
 											}
 											else if( type == 59 && (double)y < Main.worldSurface + (double)WorldGen.genRand.Next( -50, 50 ) )
 											{
-												isMudBlock = true;
+												placementBlocked = true;
 											}
 										}
 										else if( typeAtXY != 53 )
 										{
 											if( typeAtXY == 147 )
 											{
-												isMudBlock = true;
+												placementBlocked = true;
 											}
 										}
 										else
 										{
 											if( type == 40 )
 											{
-												isMudBlock = true;
+												placementBlocked = true;
 											}
 											if( (double)y < Main.worldSurface && type != 59 )
 											{
-												isMudBlock = true;
+												placementBlocked = true;
 											}
 										}
 									}
@@ -140,23 +141,23 @@ namespace TerrariaReworked
 									{
 										if( typeAtXY - 189 <= 1 || typeAtXY == 196 )
 										{
-											isMudBlock = true;
+											placementBlocked = true;
 										}
 									}
 									else if( typeAtXY - 367 > 1 )
 									{
 										if( typeAtXY - 396 <= 1 )
 										{
-											isMudBlock = !TileID.Sets.Ore[type];
+											placementBlocked = !TileID.Sets.Ore[type];
 										}
 									}
 									else if( type == 59 )
 									{
-										isMudBlock = true;
+										placementBlocked = true;
 									}
 
 
-									if( !isMudBlock )
+									if( !placementBlocked )
 									{
 										tile.type = (ushort)type;
 									}

@@ -40,7 +40,7 @@ namespace TerrariaReworked.Projectiles
 		{
 			// So set the correct path here to load the chain texture. 'YourModName' is of course the name of your mod.
 			// Then into the Projectiles folder and take the texture that is called 'CustomFlailBall_Chain'.
-			Texture2D texture = ModLoader.GetTexture( "TerrariaReworked/Projectiles/CopperFlail_Chain" );
+			Texture2D texture = ModContent.GetTexture( "TerrariaReworked/Projectiles/CopperFlail_Chain" );
 
 			Vector2 position = projectile.Center;
 			Vector2 mountedCenter = Main.player[projectile.owner].MountedCenter;

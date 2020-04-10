@@ -1,202 +1,196 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\references\tModLoader.targets" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{8298EAB6-0586-4BDA-9483-83624B66B13A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>TerrariaReworked</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>net45</TargetFramework>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+  <Target Name="BuildMod" AfterTargets="Build">
+    <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define $(DefineConstants) -unsafe $(AllowUnsafeBlocks)" />
+  </Target>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
-    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\Desktop\GRY\Terraria\TModLoader 1.3.5.3\Terraria.exe</HintPath>
-    </Reference>
+    <Compile Remove="Gores\**" />
+    <Compile Remove="Items\Vanilla\**" />
+    <Compile Remove="NPCs\Vanilla\**" />
+    <Compile Remove="Tiles\Vanilla\**" />
+    <Compile Remove="__UNUSED\**" />
+    <EmbeddedResource Remove="Gores\**" />
+    <EmbeddedResource Remove="Items\Vanilla\**" />
+    <EmbeddedResource Remove="NPCs\Vanilla\**" />
+    <EmbeddedResource Remove="Tiles\Vanilla\**" />
+    <EmbeddedResource Remove="__UNUSED\**" />
+    <None Remove="Gores\**" />
+    <None Remove="Items\Vanilla\**" />
+    <None Remove="NPCs\Vanilla\**" />
+    <None Remove="Tiles\Vanilla\**" />
+    <None Remove="__UNUSED\**" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buffs\Oblivion.cs" />
-    <Compile Include="Dusts\BerserkerDust.cs" />
-    <Compile Include="Items\AdamantiteAnvil.cs" />
-    <Compile Include="Items\AdamantiteJackhammer.cs" />
-    <Compile Include="Items\AdamantiteMace.cs" />
-    <Compile Include="Items\AxeofRainforest.cs" />
-    <Compile Include="Items\BerserkerAnvil.cs" />
-    <Compile Include="Items\BerserkerBar.cs" />
-    <Compile Include="Items\BerserkerBlade.cs" />
-    <Compile Include="Items\BerserkerBludgeon.cs" />
-    <Compile Include="Items\BerserkerNightmare.cs" />
-    <Compile Include="Items\Cinderplate.cs" />
-    <Compile Include="Items\BerserkerOre.cs" />
-    <Compile Include="Items\BloodshotLens.cs" />
-    <Compile Include="Items\Blueshift.cs" />
-    <Compile Include="Items\Breakdawn.cs" />
-    <Compile Include="Items\CaesiumForge.cs" />
-    <Compile Include="Items\ChaosTome.cs" />
-    <Compile Include="Items\CinderplateBar.cs" />
-    <Compile Include="Items\ClockworkMegashark.cs" />
-    <Compile Include="Items\CobaltJackhammer.cs" />
-    <Compile Include="Items\CobaltMace.cs" />
-    <Compile Include="Items\CopperFlail.cs" />
-    <Compile Include="Items\CopperMace.cs" />
-    <Compile Include="Items\DungeonBow.cs" />
-    <Compile Include="Items\EyeofOblivion.cs" />
-    <Compile Include="Items\FieryMace.cs" />
-    <Compile Include="Items\GiftofStarpower.cs" />
-    <Compile Include="Items\GoldFlail.cs" />
-    <Compile Include="Items\GoldMace.cs" />
-    <Compile Include="Items\HellfireChest.cs" />
-    <Compile Include="Items\IllegalWeaponInstructions.cs" />
-    <Compile Include="Items\ImperviousBrick.cs" />
-    <Compile Include="Items\InstantaniumDrill.cs" />
-    <Compile Include="Items\IronFlail.cs" />
-    <Compile Include="Items\IronMace.cs" />
-    <Compile Include="Items\JungleBow.cs" />
-    <Compile Include="Items\JungleMasher.cs" />
-    <Compile Include="Items\LeadFlail.cs" />
-    <Compile Include="Items\LeadMace.cs" />
-    <Compile Include="Items\MythrilJackhammer.cs" />
-    <Compile Include="Items\MythrilMace.cs" />
-    <Compile Include="Items\OblivionBar.cs" />
-    <Compile Include="Items\OblivionBludgeon.cs" />
-    <Compile Include="Items\OblivionGreatsword.cs" />
-    <Compile Include="Items\OblivionOre.cs" />
-    <Compile Include="Items\Opal.cs" />
-    <Compile Include="Items\OrichalcumJackhammer.cs" />
-    <Compile Include="Items\PalladiumJackhammer.cs" />
-    <Compile Include="Items\PickaxeofDusk.cs" />
-    <Compile Include="Items\PlatinumFlail.cs" />
-    <Compile Include="Items\PlatinumMace.cs" />
-    <Compile Include="Items\SapphirePickaxe.cs" />
-    <Compile Include="Items\SilverFlail.cs" />
-    <Compile Include="Items\SilverMace.cs" />
-    <Compile Include="Items\SoulofBlight.cs" />
-    <Compile Include="Items\StarpowersWill.cs" />
-    <Compile Include="Items\StoneAxe.cs" />
-    <Compile Include="Items\StoneHammer.cs" />
-    <Compile Include="Items\StonePickaxe.cs" />
-    <Compile Include="Items\StoneSword.cs" />
-    <Compile Include="Items\Timechanger.cs" />
-    <Compile Include="Items\TinFlail.cs" />
-    <Compile Include="Items\TinMace.cs" />
-    <Compile Include="Items\TitaniumAnvil.cs" />
-    <Compile Include="Items\TitaniumJackhammer.cs" />
-    <Compile Include="Items\TropicPickaxe.cs" />
-    <Compile Include="Items\TungstenFlail.cs" />
-    <Compile Include="Items\TungstenMace.cs" />
-    <Compile Include="Items\TwilightRepeater.cs" />
-    <Compile Include="Items\VanillaItemChanger.cs" />
-    <Compile Include="Items\WoodenAxe.cs" />
-    <Compile Include="Items\WoodenPickaxe.cs" />
-    <Compile Include="ModMain.cs" />
-    <Compile Include="MyWorldUtils.cs" />
-    <Compile Include="MyWorld.cs" />
-    <Compile Include="MyPlayer.cs" />
-    <Compile Include="NPCs\BloodshotEye.cs" />
-    <Compile Include="NPCs\DisabledNPCModifier.cs" />
-    <Compile Include="NPCs\OblivionEye.cs" />
-    <Compile Include="NPCs\OblivionHead1.cs" />
-    <Compile Include="NPCs\OblivionHead2.cs" />
-    <Compile Include="Prefixes\AccessoryPrefixes.cs" />
-    <Compile Include="Prefixes\AEUpdate1.cs" />
-    <Compile Include="Projectiles\AdamantiteJackhammer.cs" />
-    <Compile Include="Projectiles\BerserkerDust.cs" />
-    <Compile Include="Projectiles\BerserkerNightmare.cs" />
-    <Compile Include="Projectiles\ChaosBall2.cs" />
-    <Compile Include="Projectiles\CobaltJackhammer.cs" />
-    <Compile Include="Projectiles\CopperFlail.cs" />
-    <Compile Include="Projectiles\CopperSpear.cs" />
-    <Compile Include="Projectiles\DungeonBowProjectile.cs" />
-    <Compile Include="Projectiles\GoldFlail.cs" />
-    <Compile Include="Projectiles\GoldSpear.cs" />
-    <Compile Include="Projectiles\InstantaniumDrill.cs" />
-    <Compile Include="Projectiles\IronFlail.cs" />
-    <Compile Include="Projectiles\IronSpear.cs" />
-    <Compile Include="Projectiles\LeadFlail.cs" />
-    <Compile Include="Projectiles\LeadSpear.cs" />
-    <Compile Include="Projectiles\MythrilJackhammer.cs" />
-    <Compile Include="Projectiles\OblivionFlame.cs" />
-    <Compile Include="Projectiles\OrichalcumJackhammer.cs" />
-    <Compile Include="Projectiles\PalladiumJackhammer.cs" />
-    <Compile Include="Projectiles\PlatinumFlail.cs" />
-    <Compile Include="Projectiles\PlatinumSpear.cs" />
-    <Compile Include="Projectiles\SilverFlail.cs" />
-    <Compile Include="Projectiles\SilverSpear.cs" />
-    <Compile Include="Projectiles\TinFlail.cs" />
-    <Compile Include="Projectiles\TinSpear.cs" />
-    <Compile Include="Projectiles\TitaniumJackhammer.cs" />
-    <Compile Include="Projectiles\TungstenFlail.cs" />
-    <Compile Include="Projectiles\TungstenSpear.cs" />
-    <Compile Include="Projectiles\VanillaProjectileChanger.cs" />
-    <Compile Include="Tiles\AdamantiteAnvil.cs" />
-    <Compile Include="Tiles\BerserkerAnvil.cs" />
-    <Compile Include="Tiles\BerserkerBar.cs" />
-    <Compile Include="Tiles\BrimstoneBlock.cs" />
-    <Compile Include="Tiles\Cinderplate.cs" />
-    <Compile Include="Tiles\BerserkerOre.cs" />
-    <Compile Include="Tiles\CaesiumForge.cs" />
-    <Compile Include="Tiles\CinderplateBar.cs" />
-    <Compile Include="Tiles\Coal.cs" />
-    <Compile Include="Items\ArcherEmblem.cs" />
-    <Compile Include="Items\BerserkerEmblem.cs" />
-    <Compile Include="Items\MageEmblem.cs" />
-    <Compile Include="Items\MinionEmblem.cs" />
-    <Compile Include="Items\OverlordEmblem.cs" />
-    <Compile Include="RecipeUtils.cs" />
-    <Compile Include="Tiles\HellfireChest.cs" />
-    <Compile Include="Tiles\ImperviousBrick.cs" />
-    <Compile Include="Tiles\OblivionBar.cs" />
-    <Compile Include="Tiles\OblivionOre.cs" />
-    <Compile Include="Tiles\Opal.cs" />
-    <Compile Include="Tiles\OpalBlock.cs" />
-    <Compile Include="Tiles\ResistantWood.cs" />
-    <Compile Include="Tiles\VanillaTileChanger.cs" />
-    <Compile Include="WorldGenPasses.cs" />
-    <Compile Include="WorldGenUtils.cs" />
+    <None Remove=".gitignore" />
+    <None Remove="Buffs\Oblivion.png" />
+    <None Remove="build.txt" />
+    <None Remove="Dusts\BerserkerDust.png" />
+    <None Remove="Items\AdamantiteAnvil.png" />
+    <None Remove="Items\AdamantiteFlail.png" />
+    <None Remove="Items\AdamantiteJackhammer.png" />
+    <None Remove="Items\AdamantiteMace.png" />
+    <None Remove="Items\ArcherEmblem.png" />
+    <None Remove="Items\AxeofRainforest.png" />
+    <None Remove="Items\BerserkerAnvil.png" />
+    <None Remove="Items\BerserkerBar.png" />
+    <None Remove="Items\BerserkerBlade.png" />
+    <None Remove="Items\BerserkerBludgeon.png" />
+    <None Remove="Items\BerserkerEmblem.png" />
+    <None Remove="Items\BerserkerNightmare.png" />
+    <None Remove="Items\BerserkerOre.png" />
+    <None Remove="Items\BloodshotLens.png" />
+    <None Remove="Items\Blueshift.png" />
+    <None Remove="Items\Breakdawn.png" />
+    <None Remove="Items\BrimstoneBlock.png" />
+    <None Remove="Items\CaesiumGreatsword.png" />
+    <None Remove="Items\ChaosTome.png" />
+    <None Remove="Items\Cinderplate.png" />
+    <None Remove="Items\CinderplateBar.png" />
+    <None Remove="Items\ClockworkMegalodon.png" />
+    <None Remove="Items\ClockworkMegashark.png" />
+    <None Remove="Items\CobaltFlail.png" />
+    <None Remove="Items\CobaltJackhammer.png" />
+    <None Remove="Items\CobaltMace.png" />
+    <None Remove="Items\CopperFlail.png" />
+    <None Remove="Items\CopperMace.png" />
+    <None Remove="Items\CopperSpear.png" />
+    <None Remove="Items\CursedForge.png" />
+    <None Remove="Items\CursedForge.xcf" />
+    <None Remove="Items\DungeonBow.png" />
+    <None Remove="Items\EyeofOblivion.png" />
+    <None Remove="Items\FieryMace.png" />
+    <None Remove="Items\GiftofStarpower.png" />
+    <None Remove="Items\GoldFlail.png" />
+    <None Remove="Items\GoldMace.png" />
+    <None Remove="Items\GoldSpear.png" />
+    <None Remove="Items\HeavensTear.png" />
+    <None Remove="Items\HellfireChest.png" />
+    <None Remove="Items\IchorForge.png" />
+    <None Remove="Items\IllegalWeaponInstructions.png" />
+    <None Remove="Items\ImperviousBrick.png" />
+    <None Remove="Items\InstantaniumDrill.png" />
+    <None Remove="Items\IronFlail.png" />
+    <None Remove="Items\IronMace.png" />
+    <None Remove="Items\IronSpear.png" />
+    <None Remove="Items\JungleBow.png" />
+    <None Remove="Items\JungleMasher.png" />
+    <None Remove="Items\LeadFlail.png" />
+    <None Remove="Items\LeadMace.png" />
+    <None Remove="Items\LeadSpear.png" />
+    <None Remove="Items\MageEmblem.png" />
+    <None Remove="Items\Megalodon.png" />
+    <None Remove="Items\MinionEmblem.png" />
+    <None Remove="Items\MythrilFlail.png" />
+    <None Remove="Items\MythrilJackhammer.png" />
+    <None Remove="Items\MythrilMace.png" />
+    <None Remove="Items\OblivionBar.png" />
+    <None Remove="Items\OblivionBludgeon.png" />
+    <None Remove="Items\OblivionGreatsword.png" />
+    <None Remove="Items\OblivionOre.png" />
+    <None Remove="Items\Opal.png" />
+    <None Remove="Items\OrichalcumJackhammer.png" />
+    <None Remove="Items\OrichalcumMace.png" />
+    <None Remove="Items\OverlordEmblem.png" />
+    <None Remove="Items\PalladiumJackhammer.png" />
+    <None Remove="Items\PalladiumMace.png" />
+    <None Remove="Items\PickaxeofDusk.png" />
+    <None Remove="Items\PlatinumFlail.png" />
+    <None Remove="Items\PlatinumMace.png" />
+    <None Remove="Items\PlatinumSpear.png" />
+    <None Remove="Items\ResistantWood.png" />
+    <None Remove="Items\SapphirePickaxe.png" />
+    <None Remove="Items\SilverFlail.png" />
+    <None Remove="Items\SilverMace.png" />
+    <None Remove="Items\SilverSpear.png" />
+    <None Remove="Items\SoulofBlight.png" />
+    <None Remove="Items\StarpowersWill.png" />
+    <None Remove="Items\StoneAxe.png" />
+    <None Remove="Items\StoneHammer.png" />
+    <None Remove="Items\StonePickaxe.png" />
+    <None Remove="Items\StoneSword.png" />
+    <None Remove="Items\Timechanger.png" />
+    <None Remove="Items\TinFlail.png" />
+    <None Remove="Items\TinMace.png" />
+    <None Remove="Items\TinSpear.png" />
+    <None Remove="Items\TitaniumAnvil.png" />
+    <None Remove="Items\TitaniumJackhammer.png" />
+    <None Remove="Items\TitaniumMace.png" />
+    <None Remove="Items\TropicPickaxe.png" />
+    <None Remove="Items\TungstenFlail.png" />
+    <None Remove="Items\TungstenMace.png" />
+    <None Remove="Items\TungstenSpear.png" />
+    <None Remove="Items\TwilightRepeater.png" />
+    <None Remove="Items\WoodenAxe.png" />
+    <None Remove="Items\WoodenPickaxe.png" />
+    <None Remove="Items\_DisabledItem.png" />
+    <None Remove="NPCs\BloodshotEye.png" />
+    <None Remove="NPCs\OblivionEye.png" />
+    <None Remove="NPCs\OblivionHead1.png" />
+    <None Remove="NPCs\OblivionHead2.png" />
+    <None Remove="Projectiles\AdamantiteJackhammer.png" />
+    <None Remove="Projectiles\BerserkerDust.png" />
+    <None Remove="Projectiles\BerserkerNightmare.png" />
+    <None Remove="Projectiles\BerserkerNightmare_Chain.png" />
+    <None Remove="Projectiles\ChaosBall2.png" />
+    <None Remove="Projectiles\CobaltJackhammer.png" />
+    <None Remove="Projectiles\CopperFlail.png" />
+    <None Remove="Projectiles\CopperFlail_Chain.png" />
+    <None Remove="Projectiles\CopperSpear.png" />
+    <None Remove="Projectiles\DungeonBowProjectile.png" />
+    <None Remove="Projectiles\GoldFlail.png" />
+    <None Remove="Projectiles\GoldFlail_Chain.png" />
+    <None Remove="Projectiles\GoldSpear.png" />
+    <None Remove="Projectiles\InstantaniumDrill.png" />
+    <None Remove="Projectiles\IronFlail.png" />
+    <None Remove="Projectiles\IronFlail_Chain.png" />
+    <None Remove="Projectiles\IronSpear.png" />
+    <None Remove="Projectiles\LeadFlail.png" />
+    <None Remove="Projectiles\LeadFlail_Chain.png" />
+    <None Remove="Projectiles\LeadSpear.png" />
+    <None Remove="Projectiles\MythrilJackhammer.png" />
+    <None Remove="Projectiles\OblivionFlame.png" />
+    <None Remove="Projectiles\OrichalcumJackhammer.png" />
+    <None Remove="Projectiles\PalladiumJackhammer.png" />
+    <None Remove="Projectiles\PlatinumFlail.png" />
+    <None Remove="Projectiles\PlatinumFlail_Chain.png" />
+    <None Remove="Projectiles\PlatinumSpear.png" />
+    <None Remove="Projectiles\SilverFlail.png" />
+    <None Remove="Projectiles\SilverFlail_Chain.png" />
+    <None Remove="Projectiles\SilverSpear.png" />
+    <None Remove="Projectiles\TinFlail.png" />
+    <None Remove="Projectiles\TinFlail_Chain.png" />
+    <None Remove="Projectiles\TinSpear.png" />
+    <None Remove="Projectiles\TitaniumJackhammer.png" />
+    <None Remove="Projectiles\TungstenFlail.png" />
+    <None Remove="Projectiles\TungstenFlail_Chain.png" />
+    <None Remove="Projectiles\TungstenSpear.png" />
+    <None Remove="README.md" />
+    <None Remove="Tiles\AdamantiteAnvil.png" />
+    <None Remove="Tiles\BerserkerAnvil.png" />
+    <None Remove="Tiles\BerserkerBar.png" />
+    <None Remove="Tiles\BerserkerOre.png" />
+    <None Remove="Tiles\BrimstoneBlock.png" />
+    <None Remove="Tiles\Cinderplate.png" />
+    <None Remove="Tiles\Cinderplate.xcf" />
+    <None Remove="Tiles\CinderplateBar.png" />
+    <None Remove="Tiles\CinderplateGlow.png" />
+    <None Remove="Tiles\CinderplateGlow.xcf" />
+    <None Remove="Tiles\Coal.png" />
+    <None Remove="Tiles\CursedForge.png" />
+    <None Remove="Tiles\HellfireChest.png" />
+    <None Remove="Tiles\HellfireChest_Highlight.png" />
+    <None Remove="Tiles\ImperviousBrick.png" />
+    <None Remove="Tiles\OblivionBar.png" />
+    <None Remove="Tiles\OblivionOre.png" />
+    <None Remove="Tiles\Opal.png" />
+    <None Remove="Tiles\OpalBlock.png" />
+    <None Remove="Tiles\ResistantWood.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="build.txt" />
-    <Content Include="changelog.txt" />
-    <Content Include="description.txt" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
-  <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
-  </ProjectExtensions>
-  <PropertyGroup>
-    <PostBuildEvent>for /f "tokens=* delims=" %25%25i in ('"$(ProjectDir)..\setup\bin\setup" --steamdir') do set TERRARIASTEAMDIR=%25%25i
-"%25TERRARIASTEAMDIR%25\tModLoaderServerDebug.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

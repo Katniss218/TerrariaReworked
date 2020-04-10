@@ -25,7 +25,7 @@ namespace TerrariaReworked.Tiles
 			this.AddMapEntry( new Color( 200, 200, 200 ), name );
 			//dustType = mod.DustType("Sparkle");
 			this.disableSmartCursor = true;
-			this.adjTiles = new int[] { TileID.Anvils, TileID.MythrilAnvil, mod.TileType("AdamantiteAnvil") };
+			this.adjTiles = new int[] { TileID.Anvils, TileID.MythrilAnvil, mod.TileType( "AdamantiteAnvil" ) };
 		}
 
 		public override void NumDust( int i, int j, bool fail, ref int num )

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace TerrariaReworked.Items
 {
-	public class BerserkerAnvil : ModItem
+	public class CursedForge : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,15 +22,18 @@ namespace TerrariaReworked.Items
 			this.item.useStyle = 1;
 			this.item.consumable = true;
 			this.item.value = 150;
-			this.item.createTile = mod.TileType( "BerserkerAnvil" );
+			this.item.createTile = mod.TileType( "CursedForge" );
 			this.item.placeStyle = 0;
 		}
 		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe( mod );
-			recipe.AddIngredient( mod.ItemType( "BerserkerBar" ), 10 );
-			recipe.AddTile( ModMain.instance.TileType( "AdamantiteAnvil" ) );
+			recipe.AddRecipeGroup( "TerrariaReworked:AdamantiteForges", 1 );
+			recipe.AddIngredient( ItemID.ChlorophyteOre, 50 );
+			recipe.AddIngredient( ItemID.CursedFlame, 25 );
+			recipe.AddIngredient( ItemID.RottenChunk, 5 );
+			recipe.AddTile( ModMain.instance.TileType("AdamantiteAnvil" ) );
 			recipe.SetResult( this );
 			recipe.AddRecipe();
 		}

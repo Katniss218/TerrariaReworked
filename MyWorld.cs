@@ -239,6 +239,13 @@ namespace TerrariaReworked
 		}
 
 
+
+		public override void ModifyWorldGenTasks( List<GenPass> tasks, ref float totalWeight )
+		{
+			WorldGenPasses.GetDefaultWorldGenPasses( tasks, ref totalWeight );
+		}
+
+
 		/// <summary>
 		/// Is called to setup the Hardmode worldgen passes.
 		/// </summary>
@@ -268,15 +275,9 @@ namespace TerrariaReworked
 		/// </summary>
 		public static void ModifySuperhardmodeTasks( List<GenPass> list )
 		{
-			float totalWeight = 5;
+			float totalWeight = 1;
 			WorldGenPasses.GetDefaultSuperhardmodePasses( list, ref totalWeight );
 		}
-
-		public override void ModifyWorldGenTasks( List<GenPass> tasks, ref float totalWeight )
-		{
-			WorldGenPasses.GetDefaultWorldGenPasses( tasks, ref totalWeight );
-		}
-
 
 	}
 }

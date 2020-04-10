@@ -261,6 +261,8 @@ namespace TerrariaReworked
 			RecipeUtils.RegisterRecipeGroup( "TerrariaReworked:SilverAxe", ItemID.SilverAxe, ItemID.TungstenAxe );
 			RecipeUtils.RegisterRecipeGroup( "TerrariaReworked:SilverHammer", ItemID.SilverHammer, ItemID.TungstenHammer );
 			RecipeUtils.RegisterRecipeGroup( "TerrariaReworked:SilverBow", ItemID.SilverBow, ItemID.TungstenBow );
+
+			RecipeUtils.RegisterRecipeGroup( "TerrariaReworked:AdamantiteForges", ItemID.AdamantiteForge, ItemID.TitaniumForge );
 		}
 
 		private void SetupNewRecipes()
