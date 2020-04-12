@@ -10,11 +10,10 @@ namespace TerrariaReworked.Projectiles
 		public override void SetDefaults()
 		{
 			projectile.aiStyle = -1; // replicates ai 8
-			projectile.width = 20;
-			projectile.height = 20;
+			projectile.width = 12;
+			projectile.height = 12;
 			projectile.hostile = true;
 			projectile.magic = true;
-			projectile.penetrate = -1;
 			projectile.timeLeft = 300;
 			projectile.alpha = 100;
 			projectile.light = 0.8f;
@@ -31,12 +30,12 @@ namespace TerrariaReworked.Projectiles
 			}
 			
 			int dust = Dust.NewDust( new Vector2( projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y ), projectile.width, projectile.height, 58, projectile.velocity.X, projectile.velocity.Y, 100, default( Color ), 2.5f * projectile.scale );
-			Main.dust[dust].noGravity = true;
+			//Main.dust[dust].noGravity = true;
 			Main.dust[dust].velocity *= 0.3f;
-			for( int i = 0; i < 2; i++ )
+			for( int i = 0; i < 1; i++ )
 			{
 				dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, 54, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default( Color ), 2f );
-				Main.dust[dust].noGravity = true;
+				//Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 0.3f;
 			}
 
@@ -46,6 +45,7 @@ namespace TerrariaReworked.Projectiles
 			}
 
 			projectile.rotation += 0.3f * (float)projectile.direction;
+			
 			
 			if( projectile.velocity.Y > 16f )
 			{

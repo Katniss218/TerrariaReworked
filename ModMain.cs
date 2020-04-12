@@ -352,36 +352,51 @@ namespace TerrariaReworked
 			Main.projectileLoaded[proj] = true;
 		}
 
-		public static void DrawShadowSprites( NPC npc, int numSprites, int spread )
+		public static void DrawShadowSprites( NPC npc, int numSprites, int spread, Vector2 rotationPivot, bool drawNPC )
 		{
 			// shadow trail thing effect!
 
 			Color lightingcolor = Lighting.GetColor( (int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0) );
-			Vector2 center = new Vector2( 72f, 106f );
+			//Vector2 center = new Vector2( 72f, 106f );
 
 			//float addHeight = 0 * npc.scale;  // difference between texture frame height and npc real height.
+
+			float num68 = Main.NPCAddHeight( npc.whoAmI );
+
+			// eoc origin (pivot)
+			//Vector2 vector11 = new Vector2( 55f, 107f );
+			//Vector2 vector11 = new Vector2( 72f, 132f );
+			//Vector2 vector11 = new Vector2( 55f, 55f ); // PIVOT?
 
 			SpriteEffects spriteEffects = SpriteEffects.None;
 			if( npc.spriteDirection == 1 )
 			{
 				spriteEffects = SpriteEffects.FlipHorizontally;
 			}
+
+			Color color = npc.GetAlpha( lightingcolor );
+
 			int len = (numSprites * spread) - 1;
 			int lenPlus1 = len + 1;
 			int lenPlus1TimesTwo = lenPlus1 * 2;
+			int type = npc.type;
 			for( int i = len; i >= 0; i -= spread )
 			{
 				Vector2[] oldposArray = npc.oldPos;
-				Color color = npc.GetAlpha( lightingcolor );
+				color = npc.GetAlpha( lightingcolor );
 				color.R = (byte)((int)color.R * (lenPlus1 - i) / lenPlus1TimesTwo);
 				color.G = (byte)((int)color.G * (lenPlus1 - i) / lenPlus1TimesTwo);
 				color.B = (byte)((int)color.B * (lenPlus1 - i) / lenPlus1TimesTwo);
 				color.A = (byte)((int)color.A * (lenPlus1 - i) / lenPlus1TimesTwo);
-				Main.spriteBatch.Draw( Main.npcTexture[npc.type],
-					new Vector2(
-						npc.oldPos[i].X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + center.X * npc.scale,
-						npc.oldPos[i].Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + center.Y * npc.scale /*+ addHeight*/
-					), new Rectangle?( npc.frame ), color, npc.rotation, center, npc.scale, spriteEffects, 0f );
+				//Main.spriteBatch.Draw( Main.npcTexture[npc.type],new Vector2(npc.oldPos[i].X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + center.X * npc.scale,npc.oldPos[i].Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + center.Y * npc.scale /*+ addHeight*/), new Rectangle?( npc.frame ), color, npc.rotation, center, npc.scale, spriteEffects, 0f );
+				Main.spriteBatch.Draw( Main.npcTexture[type], new Vector2( npc.oldPos[i].X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[type].Width * npc.scale / 2f + rotationPivot.X * npc.scale, npc.oldPos[i].Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[type].Height * npc.scale / (float)Main.npcFrameCount[type] + 4f + rotationPivot.Y * npc.scale + num68 ), new Rectangle?( npc.frame ), color, npc.rotation, rotationPivot, npc.scale, spriteEffects, 0f );
+
+			}
+			if( drawNPC )
+			{
+				color = npc.GetAlpha( lightingcolor );
+
+				Main.spriteBatch.Draw( Main.npcTexture[type], new Vector2( npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[type].Width * npc.scale / 2f + rotationPivot.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[type].Height * npc.scale / (float)Main.npcFrameCount[type] + 4f + rotationPivot.Y * npc.scale + num68 ), new Rectangle?( npc.frame ), color, npc.rotation, rotationPivot, npc.scale, spriteEffects, 0f );
 			}
 		}
 	}

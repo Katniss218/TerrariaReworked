@@ -12,17 +12,17 @@ namespace TerrariaReworked.NPCs
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault( "Oblivion Eye" );
-			Main.npcFrameCount[npc.type] = 6;// 9;
+			Main.npcFrameCount[npc.type] = 9;
 			NPCID.Sets.TrailCacheLength[npc.type] = 10;    //The length of old position to be recorded
-			NPCID.Sets.TrailingMode[npc.type] = 0;        //The recording mode
+			NPCID.Sets.TrailingMode[npc.type] = 1;        //The recording mode
 		}
 
 		public override void SetDefaults()
 		{
 			npc.boss = true;
 			music = MusicID.Boss3;
-			npc.width = 100;// 146;
-			npc.height = 110; // 146;// 212;
+			npc.width = 146;// 146;
+			npc.height = 146; // 146;// 212;
 			npc.damage = 80;
 			npc.defense = 38;
 			npc.lifeMax = 65000;
@@ -31,6 +31,7 @@ namespace TerrariaReworked.NPCs
 			npc.value = 450f;
 			npc.knockBackResist = 0;
 			npc.aiStyle = -1;
+			this.aiType = -1;
 			npc.npcSlots = 10;
 			npc.noGravity = true;
 			npc.noTileCollide = true;
@@ -102,7 +103,9 @@ namespace TerrariaReworked.NPCs
 			//const int FRAME_HEIGHT = 166 //268;
 
 			npc.frame.X = 0;
-			npc.frameCounter += 1.0; 
+			npc.frameCounter += 1.0;
+			//npc.frame.Height = 110;
+			//npc.frame.Width = 110;
 			if( npc.frameCounter < 7.0 )
 			{
 				npc.frame.Y = 0;
@@ -117,19 +120,19 @@ namespace TerrariaReworked.NPCs
 			}
 			else
 			{
-				npc.frameCounter = 0.0;
-				npc.frame.Y = 0;
+				npc.frameCounter = 0;
 			}
+
 			if( this.currentPhase == 1f )
 			{
 				npc.frame.Y = npc.frame.Y + num * 3;
 				return;
 			}
-			/*if( this.currentPhase >= 2f )
+			if( this.currentPhase >= 2f )
 			{
 				npc.frame.Y = npc.frame.Y + num * 6;
 				return;
-			}*/
+			}
 
 			/*npc.frame.X = 0;
 			npc.frame.Y = 0;
@@ -178,7 +181,7 @@ namespace TerrariaReworked.NPCs
 			}
 
 			float distX = npc.position.X + (float)(npc.width / 2) - Main.player[npc.target].position.X - (float)(Main.player[npc.target].width / 2);
-			float distY = npc.position.Y + (float)npc.height - 59f - Main.player[npc.target].position.Y - (float)(Main.player[npc.target].height / 2);
+			float distY = npc.position.Y + (float)(npc.height / 2) - Main.player[npc.target].position.Y - (float)(Main.player[npc.target].height / 2);
 			float rotationToPlayer = (float)Math.Atan2( (double)distY, (double)distX ) + 1.57f; // halfPi
 			if( rotationToPlayer < 0f )
 			{
@@ -342,23 +345,27 @@ namespace TerrariaReworked.NPCs
 				}
 				else if( this.currentTask == TASK_OBLIVION_SHOWER )
 				{
-					int offset = -110;
 					Vector2 center = this.npc.getRect().Center.ToVector2();
+					Vector2 dirToPlayer = Main.player[this.npc.target].getRect().Center.ToVector2() - center;
+
+					int offset = 90;
 					Vector2 dir = this.npc.rotation.ToRotationVector2();
 					//dir.Normalize();
 					dir = new Vector2( dir.Y, -dir.X );
 
-					int boxRadius = 10;
-					Vector2 centerOffset1 = center + (dir * offset);
-					//Vector2 centerOffset2 = center + (dir * offset) + (dir * boxRadius * 1);
-					//Vector2 centerOffset3 = center + (dir * offset) + (dir * boxRadius * 2);
-					//Vector2 centerOffset4 = center + (dir * offset) + (dir * boxRadius * 3);
-					for( int i = 0; i < 4; i++ )
-						Dust.NewDust( centerOffset1 - new Vector2( boxRadius, boxRadius ), 2* boxRadius, 2* boxRadius, 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
-				///Dust.NewDust( centerOffset2 - new Vector2( boxRadius, boxRadius ), 2* boxRadius, 2* boxRadius, 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
-					//Dust.NewDust( centerOffset3 - new Vector2( boxRadius, boxRadius ), 2* boxRadius, 2* boxRadius, 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
-					//Dust.NewDust( centerOffset4 - new Vector2( boxRadius, boxRadius ), 2* boxRadius, 2* boxRadius, 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
-					//Projectile.NewProjectile( center, dirToPlayer.RotatedBy( MathHelper.ToRadians( deflection ) + MathHelper.ToRadians( Main.rand.NextFloat( -deflectionRandMax, deflectionRandMax ) ) ) * Main.rand.NextFloat( minSpeed, maxSpeed ), mod.ProjectileType( "OblivionFlame" ), 60, 2 );
+					int boxRadius = 15;
+					float boxRadiusMult = 1.05f;
+					Vector2 centerOffset1 = center + (dir * -offset);
+					Vector2 centerOffset2 = center + (dir * -offset) + (dir * -boxRadius * 1);
+					Vector2 centerOffset3 = center + (dir * -offset) + (dir * -boxRadius * 2);
+					Vector2 centerOffset4 = center + (dir * -offset) + (dir * -boxRadius * 3);
+					for( int i = 0; i < 2; i++ )
+					{
+						Dust.NewDust( centerOffset1 - new Vector2( boxRadius * boxRadiusMult, boxRadius * boxRadiusMult ), (int)(2 * boxRadius * boxRadiusMult), (int)(2 * boxRadius * boxRadiusMult), 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
+						Dust.NewDust( centerOffset2 - new Vector2( boxRadius * (boxRadiusMult * 2), boxRadius * (boxRadiusMult * 2) ), (int)(2 * boxRadius * (boxRadiusMult * 2)), (int)(2 * boxRadius * (boxRadiusMult * 2)), 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
+						Dust.NewDust( centerOffset3 - new Vector2( boxRadius * (boxRadiusMult * 3), boxRadius * (boxRadiusMult * 3) ), (int)(2 * boxRadius * (boxRadiusMult * 3)), (int)(2 * boxRadius * (boxRadiusMult * 3)), 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
+						Dust.NewDust( centerOffset4 - new Vector2( boxRadius * (boxRadiusMult * 4), boxRadius * (boxRadiusMult * 4) ), (int)(2 * boxRadius * (boxRadiusMult * 4)), (int)(2 * boxRadius * (boxRadiusMult * 4)), 58, this.npc.velocity.X * 0.5f, this.npc.velocity.Y * 0.5f, 100, default, 2 );
+					}
 
 					if( npc.ai[2] < 5 )
 					{
@@ -368,7 +375,6 @@ namespace TerrariaReworked.NPCs
 					}
 					else
 					{
-						Vector2 dirToPlayer = Main.player[this.npc.target].getRect().Center.ToVector2() - this.npc.getRect().Center.ToVector2();
 						dirToPlayer.Normalize();
 						this.npc.velocity *= 0.25f;
 						this.npc.velocity += dirToPlayer * 10f;
@@ -378,10 +384,8 @@ namespace TerrariaReworked.NPCs
 					npc.ai[2]++;
 					if( npc.ai[2] % 16 == 0 )
 					{
-						Vector2 dirToPlayer = Main.player[this.npc.target].getRect().Center.ToVector2() - this.npc.getRect().Center.ToVector2();
 						dirToPlayer.Normalize();
-
-						this.npc.rotation = new Vector2( dirToPlayer.Y, -dirToPlayer.X ).ToRotation();
+						
 						int shotCount = 3;
 						float deflection = Main.rand.NextFloat( -40, 40 ); // deg
 						float deflectionRandMax = 22;
@@ -389,8 +393,13 @@ namespace TerrariaReworked.NPCs
 						const float maxSpeed = 9f;
 						for( int i = 0; i < shotCount; i++ )
 						{
-							Projectile.NewProjectile( center, dirToPlayer.RotatedBy( MathHelper.ToRadians( deflection ) + MathHelper.ToRadians( Main.rand.NextFloat( -deflectionRandMax, deflectionRandMax ) ) ) * Main.rand.NextFloat( minSpeed, maxSpeed ), mod.ProjectileType( "OblivionFlame2" ), 60, 2 );
+							Projectile.NewProjectile( centerOffset3, dirToPlayer.RotatedBy( MathHelper.ToRadians( deflection ) + MathHelper.ToRadians( Main.rand.NextFloat( -deflectionRandMax, deflectionRandMax ) ) ) * Main.rand.NextFloat( minSpeed, maxSpeed ), mod.ProjectileType( "OblivionFlame2" ), 60, 2 );
 						}
+					}
+					if( npc.ai[2] % 8 == 0 )
+					{
+						float dirRotation = new Vector2( dirToPlayer.Y, -dirToPlayer.X ).ToRotation();
+						npc.rotation = dirRotation;
 					}
 					if( npc.ai[2] >= 60 )
 					{
@@ -456,8 +465,9 @@ namespace TerrariaReworked.NPCs
 
 		public override bool PreDraw( SpriteBatch spriteBatch, Color drawColor )
 		{
-			ModMain.DrawShadowSprites( npc, 5, 2 );
-
+			Vector2 vector11 = new Vector2( 72f, 132f );
+			ModMain.DrawShadowSprites( npc, 5, 2, vector11, true );
+			
 			return false;
 		}
 	}
