@@ -60,6 +60,7 @@
     <None Remove="Items\CobaltMace.png" />
     <None Remove="Items\CopperFlail.png" />
     <None Remove="Items\CopperMace.png" />
+    <None Remove="Items\CopperRing.png" />
     <None Remove="Items\CopperSpear.png" />
     <None Remove="Items\CursedForge.png" />
     <None Remove="Items\CursedForge.xcf" />
@@ -69,15 +70,18 @@
     <None Remove="Items\GiftofStarpower.png" />
     <None Remove="Items\GoldFlail.png" />
     <None Remove="Items\GoldMace.png" />
+    <None Remove="Items\GoldRing.png" />
     <None Remove="Items\GoldSpear.png" />
     <None Remove="Items\HeavensTear.png" />
     <None Remove="Items\HellfireChest.png" />
     <None Remove="Items\IchorForge.png" />
+    <None Remove="Items\IchorForge.xcf" />
     <None Remove="Items\IllegalWeaponInstructions.png" />
     <None Remove="Items\ImperviousBrick.png" />
     <None Remove="Items\InstantaniumDrill.png" />
     <None Remove="Items\IronFlail.png" />
     <None Remove="Items\IronMace.png" />
+    <None Remove="Items\IronRing.png" />
     <None Remove="Items\IronSpear.png" />
     <None Remove="Items\JungleBow.png" />
     <None Remove="Items\JungleMasher.png" />

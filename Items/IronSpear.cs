@@ -23,7 +23,7 @@ namespace TerrariaReworked.Items
 			this.item.shootSpeed = 3.7f;
 			this.item.knockBack = 6.5f;
 			this.item.scale = 1f;
-			this.item.rare = 5;
+			this.item.rare = 0;
 			this.item.value = 1600;
 
 			this.item.melee = true;

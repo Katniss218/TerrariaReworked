@@ -12,6 +12,8 @@ namespace TerrariaReworked
 		//private static Recipe emptyRecipe;
 		public const int BerserkerDustDamage = 75;
 
+		public static readonly int[] RiaProjectileDamage = new int[3] { 87, 97, 107 };
+
 		public static readonly int[] disabledItems = new int[]
 		{
 			ItemID.WoodHelmet,
@@ -66,7 +68,13 @@ namespace TerrariaReworked
 
 		public static readonly int[] disabledNPCs = new int[]
 		{
-			NPCID.DukeFishron
+			NPCID.DukeFishron,
+
+			NPCID.Butcher,
+			NPCID.Nailhead,
+			NPCID.DeadlySphere,
+			NPCID.Psycho,
+			NPCID.DrManFly
 		};
 
 		public static ModMain instance { get; private set; }
@@ -175,6 +183,16 @@ namespace TerrariaReworked
 			Main.itemTexture[ItemID.PlatinumAxe] = GetTexture( "Items/Vanilla/PlatinumAxe" );
 			Main.itemTexture[ItemID.PlatinumHammer] = GetTexture( "Items/Vanilla/PlatinumHammer" );
 
+
+
+			Main.itemTexture[ItemID.LightsBane] = GetTexture( "Items/Vanilla/LightsBane" );
+			Main.itemTexture[ItemID.DemonBow] = GetTexture( "Items/Vanilla/DemonBow" );
+			Main.itemTexture[ItemID.NightmarePickaxe] = GetTexture( "Items/Vanilla/NightmarePickaxe" );
+			Main.itemTexture[ItemID.WarAxeoftheNight] = GetTexture( "Items/Vanilla/WarAxeoftheNight" );
+			Main.itemTexture[ItemID.TheBreaker] = GetTexture( "Items/Vanilla/TheBreaker" );
+
+
+
 			// Cobalt-Tier Ore
 			Main.itemTexture[ItemID.CobaltSword] = GetTexture( "Items/Vanilla/CobaltSword" );
 			Main.itemTexture[ItemID.CobaltDrill] = GetTexture( "Items/Vanilla/CobaltDrill" );
@@ -220,6 +238,8 @@ namespace TerrariaReworked
 			Main.itemTexture[ItemID.ChlorophyteOre] = GetTexture( "Items/Vanilla/ChlorophyteOre" );
 			Main.itemTexture[ItemID.ChlorophyteBar] = GetTexture( "Items/Vanilla/ChlorophyteBar" );
 
+			Main.itemTexture[ItemID.EyeoftheGolem] = GetTexture( "Items/Vanilla/EyeoftheGolem" );
+
 			Main.tileTexture[TileID.Chlorophyte] = GetTexture( "Tiles/Vanilla/ChlorophyteOre" );
 
 			SetNPCTexture( NPCID.Pixie, GetTexture( "NPCs/Vanilla/Pixie" ) );
@@ -242,6 +262,7 @@ namespace TerrariaReworked
 		{
 			RecipeUtils.RemoveAllRecipesWithResult( ItemID.AvengerEmblem );
 			RecipeUtils.RemoveAllRecipesWithResult( ItemID.BladeofGrass );
+			RecipeUtils.RemoveAllRecipesWithResult( ItemID.TerraBlade );
 
 			// Remove all recipes using the disabled items.
 			for( int i = 0; i < disabledItems.Length; i++ )
@@ -284,6 +305,15 @@ namespace TerrariaReworked
 			rec.AddIngredient( ItemID.Stinger, 12 );
 			rec.AddTile( TileID.Anvils );
 			rec.SetResult( ItemID.BladeofGrass );
+			rec.AddRecipe();
+
+
+			rec = new ModRecipe( this );
+			rec.AddIngredient( ItemID.TrueNightsEdge, 1 );
+			rec.AddIngredient( ItemID.TrueExcalibur, 1 );
+			rec.AddIngredient( ItemID.BrokenHeroSword, 1 );
+			rec.AddTile( TileType( "AdamantiteAnvil" ) );
+			rec.SetResult( ItemID.TerraBlade );
 			rec.AddRecipe();
 
 

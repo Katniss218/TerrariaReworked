@@ -388,6 +388,11 @@ namespace TerrariaReworked.Items
 			{
 				item.SetNameOverride( "Caesium Bar" );
 			}
+
+			if( item.type == ItemID.CobaltShield )
+			{
+				item.SetNameOverride( "Aqua Shield" );
+			}
 		}
 		
 		public override void MeleeEffects( Item item, Player player, Rectangle hitbox )
