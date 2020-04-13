@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace TerrariaReworked.NPCs
 {
-	public class OblivionHead2 : ModNPC
+	public class OblivionBody : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
@@ -24,9 +24,10 @@ namespace TerrariaReworked.NPCs
 			music = MusicID.Boss3;
 			npc.width = 160;
 			npc.height = 180;// 212;
-			npc.damage = 1;
-			npc.defense = 1;
-			npc.lifeMax = 10000;
+			npc.damage = 0;
+			npc.defense = 999;
+			npc.lifeMax = 100000;
+			npc.immortal = true;
 			npc.HitSound = SoundID.NPCHit2;
 			npc.DeathSound = SoundID.NPCDeath2;
 			npc.value = 450f;
@@ -37,10 +38,7 @@ namespace TerrariaReworked.NPCs
 			npc.noTileCollide = true;
 			npc.netAlways = true;
 		}
-
-		// ai[1] - is spinning? (0, 1)
-		// ai[2] - timer
-
+		
 		public override void FindFrame( int frameHeight )
 		{
 			npc.frame.X = 0;
@@ -71,10 +69,9 @@ namespace TerrariaReworked.NPCs
 				npc.frame.Y += 1284;
 			}*/
 			npc.frame.Width = 160;
-			npc.frame.Height = 180;
+			npc.frame.Height = 350;
 		}
-
-
+		
 		public override void AI()
 		{
 			if( npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active )
@@ -82,8 +79,8 @@ namespace TerrariaReworked.NPCs
 				npc.TargetClosest( true );
 			}
 			bool playerDead = Main.player[npc.target].dead;
-			
-			Vector2 dir = (Main.player[npc.target].position + new Vector2( -100, -150 )) - npc.position;
+
+			Vector2 dir = (Main.player[npc.target].position + new Vector2( 0, 100 )) - npc.position;
 			dir.Normalize();
 			npc.velocity = dir * 3;
 			/*float rotationSpeedAmount = 0.02f;

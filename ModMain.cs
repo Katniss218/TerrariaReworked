@@ -69,6 +69,8 @@ namespace TerrariaReworked
 		public static readonly int[] disabledNPCs = new int[]
 		{
 			NPCID.DukeFishron,
+			NPCID.MoonLordCore,
+			NPCID.CultistBoss,
 
 			NPCID.Butcher,
 			NPCID.Nailhead,

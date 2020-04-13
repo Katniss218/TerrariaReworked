@@ -32,12 +32,12 @@ namespace TerrariaReworked.Projectiles
 				Main.PlaySound( SoundID.Item20, projectile.position );
 			}
 			
-			int dust = Dust.NewDust( new Vector2( projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y ), projectile.width, projectile.height, 58, projectile.velocity.X, projectile.velocity.Y, 100, default( Color ), 2.5f * projectile.scale );
+			int dust = Dust.NewDust( new Vector2( projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y ), projectile.width, projectile.height, ModMain.instance.DustType( "OblivionDust" ), projectile.velocity.X, projectile.velocity.Y, 100, default( Color ), 2.5f * projectile.scale );
 			Main.dust[dust].noGravity = true;
 			Main.dust[dust].velocity *= 0.3f;
 			for( int i = 0; i < 2; i++ )
 			{
-				dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, 54, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default( Color ), 2f );
+				dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, ModMain.instance.DustType( "OblivionDust" ), projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default( Color ), 2f );
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 0.3f;
 			}
@@ -65,7 +65,7 @@ namespace TerrariaReworked.Projectiles
 				//rot *= Main.rand.NextFloat( 200, 300 );
 				Rectangle r = projectile.getRect();
 				r.Inflate( 10, 10 );
-				dust = Dust.NewDust( new Vector2( r.X, r.Y ), r.Width, r.Height, 58, rot.X * 10, rot.Y * 10, 0, default( Color ), 2f * projectile.scale );
+				dust = Dust.NewDust( new Vector2( r.X, r.Y ), r.Width, r.Height, ModMain.instance.DustType( "OblivionDust" ), rot.X * 10, rot.Y * 10, 0, default( Color ), 2f * projectile.scale );
 				if( Main.rand.Next( 3 ) != 0 )
 					Main.dust[dust].noGravity = true;
 			}
@@ -80,11 +80,11 @@ namespace TerrariaReworked.Projectiles
 			Main.PlaySound( SoundID.Item10, projectile.position );
 			for( int i = 0; i < 20; i++ )
 			{
-				int dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, 58, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default( Color ), 2f * projectile.scale );
+				int dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, ModMain.instance.DustType( "OblivionDust" ), -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default( Color ), 2f * projectile.scale );
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 2f;
 
-				dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, 58, -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default( Color ), 1f * projectile.scale );
+				dust = Dust.NewDust( new Vector2( projectile.position.X, projectile.position.Y ), projectile.width, projectile.height, ModMain.instance.DustType( "OblivionDust" ), -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, 100, default( Color ), 1f * projectile.scale );
 				Main.dust[dust].velocity *= 2f;
 			}
 		}

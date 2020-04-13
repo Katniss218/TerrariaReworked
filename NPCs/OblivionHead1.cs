@@ -80,7 +80,7 @@ namespace TerrariaReworked.NPCs
 			}
 			bool playerDead = Main.player[npc.target].dead;
 
-			Vector2 dir = Main.player[npc.target].position - npc.position;
+			Vector2 dir = (Main.player[npc.target].position + new Vector2( 100, -100 )) - npc.position;
 			dir.Normalize();
 			npc.velocity = dir * 3;
 			/*float rotationSpeedAmount = 0.02f;
