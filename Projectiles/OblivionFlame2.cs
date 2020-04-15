@@ -60,9 +60,11 @@ namespace TerrariaReworked.Projectiles
 
 		public override void ModifyHitPlayer( Player target, ref int damage, ref bool crit )
 		{
+			target.AddBuff( mod.BuffType( "Oblivion" ), 240 );
+
 			projectile.timeLeft = 0;
 		}
-
+		
 		public override bool PreDraw( SpriteBatch spriteBatch, Color lightColor )
 		{
 			lightColor.A = (byte)(lightColor.A * 0.2f);

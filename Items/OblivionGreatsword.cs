@@ -33,27 +33,27 @@ namespace TerrariaReworked.Items
 		{
 			ModRecipe recipe = new ModRecipe( this.mod );
 			recipe.AddIngredient( null, "OblivionBar", 25 );
-			recipe.AddTile( mod.TileType("AdamantiteAnvil") );
+			recipe.AddTile( mod.TileType( "AdamantiteAnvil" ) );
 			recipe.SetResult( this );
 			recipe.AddRecipe();
 		}
-		
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+
+		public override void MeleeEffects( Player player, Rectangle hitbox )
 		{
-			if (Main.rand.Next(3) == 0)
+			if( Main.rand.Next( 3 ) == 0 )
 			{
-				//Emit dusts when swing the sword
-				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 54, 0f, 0f, 100, new Color(), 2f);
-				Main.dust[dust].noGravity = true;
-				dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 58, 0f, 0f, 100, new Color(), 2f);
-				Main.dust[dust].noGravity = true;
+				for( int i = 0; i < 2; i++ )
+				{
+					int dust = Dust.NewDust( new Vector2( hitbox.X, hitbox.Y ), hitbox.Width, hitbox.Height, ModMain.instance.DustType( "OblivionDust" ), 0f, 0f, 100, default, 2f );
+					Main.dust[dust].noGravity = true;
+				}
 			}
 		}
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC( Player player, NPC target, int damage, float knockback, bool crit )
 		{
-				// Add the buff 
-				target.AddBuff(mod.BuffType("Oblivion"), 240);
+			// Add the buff 
+			target.AddBuff( mod.BuffType( "Oblivion" ), 240 );
 		}
 	}
 }

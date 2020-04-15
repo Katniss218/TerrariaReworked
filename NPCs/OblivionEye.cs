@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace TerrariaReworked.NPCs
@@ -101,14 +102,10 @@ namespace TerrariaReworked.NPCs
 		
 		public override void FindFrame( int frameHeight )
 		{
-			//const int FRAME_WIDTH = 148;
 			int num = Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type];
-			//const int FRAME_HEIGHT = 166 //268;
 
 			npc.frame.X = 0;
 			npc.frameCounter += 1.0;
-			//npc.frame.Height = 110;
-			//npc.frame.Width = 110;
 			if( npc.frameCounter < 7.0 )
 			{
 				npc.frame.Y = 0;
@@ -436,19 +433,52 @@ namespace TerrariaReworked.NPCs
 			}
 		}
 
-		public override void NPCLoot()
+		public const string REBORN_MESSAGE = "Oblivion has been reborn!";
+
+		public override bool PreNPCLoot()
 		{
-			if( MyWorld.worldProgressionState != WorldProgressionState.Superhardmode )
-				MyWorld.InitiateSuperhardmode( (int)(this.npc.position.X / 16), (int)(this.npc.position.Y / 16) );
+			//if( MyWorld.worldProgressionState != WorldProgressionState.Superhardmode )
+			//	MyWorld.InitiateSuperhardmode( (int)(this.npc.position.X / 16), (int)(this.npc.position.Y / 16) );
 
 			NPC.NewNPC( (int)this.npc.position.X - 100, (int)this.npc.position.Y - 200, mod.NPCType( "OblivionHead1" ) );
-			NPC.NewNPC( (int)this.npc.position.X + 100, (int)this.npc.position.Y - 100, mod.NPCType( "OblivionHead2" ) );
-			NPC.NewNPC( (int)this.npc.position.X, (int)this.npc.position.Y + 50, mod.NPCType( "OblivionBody" ) );
+			
 			//MyWorld.downedOblivion = true;
+
+			if( Main.netMode == 0 )
+			{
+				Main.NewText( REBORN_MESSAGE, 255, 60, 0 );
+			}
+			else if( Main.netMode == 2 )
+			{
+				NetworkText text = NetworkText.FromLiteral( REBORN_MESSAGE );
+				NetMessage.SendData( 25, -1, -1, text, 255, 255f, 60f, 0f, 0 ); // chat
+			}
 
 			// spawn 'dead' oblivion eye with the timer to reborn itself.
 			Gore.NewGore( npc.position, npc.velocity, 9, 1f );
 			Gore.NewGore( npc.position, npc.velocity, 10, 1f );
+
+			return false;
+		}
+
+		public static void NPCLoot( NPC npc )
+		{
+			MyWorld.downedOblivion = true;
+			if( Main.netMode == 0 )
+			{
+				Main.NewText( Language.GetTextValue( "Announcement.HasBeenDefeated_Single", "Oblivion" ), 175, 75, byte.MaxValue, false );
+			}
+			else if( Main.netMode == 2 )
+			{
+				NetMessage.BroadcastChatMessage( NetworkText.FromKey( "Announcement.HasBeenDefeated_Single", new object[]
+				{
+					"The Oblivion"
+				} ), new Color( 175, 75, 255 ), -1 );
+			}
+
+			Item.NewItem( npc.getRect(), ItemID.SuperHealingPotion, Main.rand.Next( 10, 21 ) );
+			Item.NewItem( npc.getRect(), ModMain.instance.ItemType( "OblivionOre" ), Main.rand.Next( 150, 201 ) );
+			ModMain.DropCoins( npc );
 		}
 
 		public override bool PreDraw( SpriteBatch spriteBatch, Color drawColor )

@@ -22,14 +22,19 @@ namespace TerrariaReworked.Buffs
 		{
 			player.lifeRegen = -Strength;
 
-			for( int i = 0; i < 2; i++ )
-			{
-				Rectangle r = player.getRect();
-				int dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, 54, 0f, 0f, 100, new Color(), 3f );
-				Main.dust[dust].noGravity = true;
+			Rectangle r = player.getRect();
 
-				int dust2 = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, 58, 0f, 0f, 100, new Color(), 3f );
-				Main.dust[dust2].noGravity = true;
+			float size = r.Width * 0.0001f * r.Height;
+			if( size < 1 ) size = 1;
+			if( size > 50 ) size = 50;
+
+			for( int i = 0; i < size; i++ )
+			{
+				int dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, ModMain.instance.DustType( "OblivionDust" ), 0f, 0f, 100, default, 3f );
+				Main.dust[dust].noGravity = true;
+				
+				dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, ModMain.instance.DustType( "OblivionDust" ), Main.rand.NextFloat( -0.3f, 0.3f ), Main.rand.NextFloat( -0.3f, 0.3f ), 100, default, 2f );
+				Main.dust[dust].noGravity = true;
 			}
 		}
 
@@ -37,14 +42,19 @@ namespace TerrariaReworked.Buffs
 		{
 			npc.lifeRegen = -Strength;
 
-			for( int i = 0; i < 2; i++ )
+			Rectangle r = npc.getRect();
+
+			float size = r.Width * 0.0001f * r.Height;
+			if( size < 1 ) size = 1;
+			if( size > 50 ) size = 50;
+
+			for( int i = 0; i < size; i++ )
 			{
-				Rectangle r = npc.getRect();
-				int dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, 54, 0f, 0f, 100, new Color(), 3f );
+				int dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, ModMain.instance.DustType( "OblivionDust" ), 0f, 0f, 100, default, 3f );
 				Main.dust[dust].noGravity = true;
 
-				int dust2 = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, 58, 0f, 0f, 100, new Color(), 3f );
-				Main.dust[dust2].noGravity = true;
+				dust = Dust.NewDust( r.Location.ToVector2(), r.Width, r.Height, ModMain.instance.DustType( "OblivionDust" ), Main.rand.NextFloat( -0.3f, 0.3f ), Main.rand.NextFloat( -0.3f, 0.3f ), 100, default, 2f );
+				Main.dust[dust].noGravity = true;
 			}
 		}
 	}

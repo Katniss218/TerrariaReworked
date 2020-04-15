@@ -111,19 +111,28 @@ namespace TerrariaReworked
 			// Misc stuff.
 			Main.itemTexture[ItemID.AvengerEmblem] = GetTexture( "Items/Vanilla/AvengerEmblem" );
 			Main.itemTexture[ItemID.Coal] = GetTexture( "Items/Vanilla/Coal" );
-			Main.itemTexture[ItemID.Sunfury] = GetTexture( "Items/Vanilla/Sunfury" );
 			Main.itemTexture[ItemID.Minishark] = GetTexture( "Items/Vanilla/Minishark" );
 			Main.itemTexture[ItemID.Megashark] = GetTexture( "Items/Vanilla/Megashark" );
 			Main.itemTexture[ItemID.BladeofGrass] = GetTexture( "Items/Vanilla/BladeofGrass" );
-			Main.itemTexture[ItemID.ChlorophyteOre] = GetTexture( "Items/Vanilla/ChlorophyteOre" );
-			Main.itemTexture[ItemID.ChlorophyteBar] = GetTexture( "Items/Vanilla/ChlorophyteBar" );
-			Main.itemTexture[ItemID.FieryGreatsword] = GetTexture( "Items/Vanilla/FieryGreatsword" );
-			Main.itemTexture[ItemID.MoltenPickaxe] = GetTexture( "Items/Vanilla/MoltenPickaxe" );
-			Main.itemTexture[ItemID.MoltenHamaxe] = GetTexture( "Items/Vanilla/MoltenHamaxe" );
 			Main.itemTexture[ItemID.SpellTome] = GetTexture( "Items/Vanilla/SpellTome" );
+			Main.itemTexture[ItemID.WaterBolt] = GetTexture( "Items/Vanilla/WaterBolt" );
 			Main.itemTexture[ItemID.CursedFlames] = GetTexture( "Items/Vanilla/CursedFlames" );
 			Main.itemTexture[ItemID.GoldenShower] = GetTexture( "Items/Vanilla/GoldenShower" );
 			Main.itemTexture[ItemID.CrystalStorm] = GetTexture( "Items/Vanilla/CrystalStorm" );
+
+			Main.itemTexture[ItemID.Dynamite] = GetTexture( "Items/Vanilla/Dynamite" );
+			Main.itemTexture[ItemID.StickyDynamite] = GetTexture( "Items/Vanilla/StickyDynamite" );
+			Main.itemTexture[ItemID.Bomb] = GetTexture( "Items/Vanilla/Bomb" );
+			Main.itemTexture[ItemID.StickyBomb] = GetTexture( "Items/Vanilla/StickyBomb" );
+			Main.itemTexture[ItemID.WormFood] = GetTexture( "Items/Vanilla/WormFood" );
+			Main.itemTexture[ItemID.FallenStar] = GetTexture( "Items/Vanilla/FallenStar" );
+			Main.itemTexture[ItemID.LifeCrystal] = GetTexture( "Items/Vanilla/LifeCrystal" );
+			Main.itemTexture[ItemID.ManaCrystal] = GetTexture( "Items/Vanilla/ManaCrystal" );
+			Main.itemTexture[ItemID.RocketBoots] = GetTexture( "Items/Vanilla/RocketBoots" );
+			Main.itemTexture[ItemID.Gel] = GetTexture( "Items/Vanilla/Gel" );
+
+			Main.itemTexture[ItemID.WoodenSword] = GetTexture( "Items/Vanilla/WoodenSword" );
+			Main.itemTexture[ItemID.WoodenHammer] = GetTexture( "Items/Vanilla/WoodenHammer" );
 
 			// Copper-Tier Ore
 			Main.itemTexture[ItemID.CopperBroadsword] = GetTexture( "Items/Vanilla/CopperBroadsword" );
@@ -193,6 +202,15 @@ namespace TerrariaReworked
 			Main.itemTexture[ItemID.WarAxeoftheNight] = GetTexture( "Items/Vanilla/WarAxeoftheNight" );
 			Main.itemTexture[ItemID.TheBreaker] = GetTexture( "Items/Vanilla/TheBreaker" );
 
+
+			Main.itemTexture[ItemID.FieryGreatsword] = GetTexture( "Items/Vanilla/FieryGreatsword" );
+			Main.itemTexture[ItemID.MoltenPickaxe] = GetTexture( "Items/Vanilla/MoltenPickaxe" );
+			Main.itemTexture[ItemID.MoltenHamaxe] = GetTexture( "Items/Vanilla/MoltenHamaxe" );
+			Main.itemTexture[ItemID.MoltenFury] = GetTexture( "Items/Vanilla/MoltenFury" );
+			Main.itemTexture[ItemID.Sunfury] = GetTexture( "Items/Vanilla/Sunfury" );
+
+			Main.itemTexture[ItemID.NightsEdge] = GetTexture( "Items/Vanilla/NightsEdge" );
+			Main.itemTexture[ItemID.BrokenHeroSword] = GetTexture( "Items/Vanilla/BrokenHeroSword" );
 
 
 			// Cobalt-Tier Ore
@@ -399,6 +417,96 @@ namespace TerrariaReworked
 				color = npc.GetAlpha( lightingcolor );
 
 				Main.spriteBatch.Draw( Main.npcTexture[type], new Vector2( npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[type].Width * npc.scale / 2f + rotationPivot.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[type].Height * npc.scale / (float)Main.npcFrameCount[type] + 4f + rotationPivot.Y * npc.scale + num68 ), new Rectangle?( npc.frame ), color, npc.rotation, rotationPivot, npc.scale, spriteEffects, 0f );
+			}
+		}
+
+		public static void DropCoins( NPC npc )
+		{
+			float num79 = npc.value;
+			if( npc.midas )
+			{
+				num79 *= 1f + (float)Main.rand.Next( 10, 50 ) * 0.01f;
+			}
+			num79 *= 1f + (float)Main.rand.Next( -20, 21 ) * 0.01f;
+			if( Main.rand.Next( 5 ) == 0 )
+			{
+				num79 *= 1f + (float)Main.rand.Next( 5, 11 ) * 0.01f;
+			}
+			if( Main.rand.Next( 10 ) == 0 )
+			{
+				num79 *= 1f + (float)Main.rand.Next( 10, 21 ) * 0.01f;
+			}
+			if( Main.rand.Next( 15 ) == 0 )
+			{
+				num79 *= 1f + (float)Main.rand.Next( 15, 31 ) * 0.01f;
+			}
+			if( Main.rand.Next( 20 ) == 0 )
+			{
+				num79 *= 1f + (float)Main.rand.Next( 20, 41 ) * 0.01f;
+			}
+			num79 += npc.extraValue;
+			while( (int)num79 > 0 )
+			{
+				if( num79 > 1000000f )
+				{
+					int num80 = (int)(num79 / 1000000f);
+					if( num80 > 50 && Main.rand.Next( 5 ) == 0 )
+					{
+						num80 /= Main.rand.Next( 3 ) + 1;
+					}
+					if( Main.rand.Next( 5 ) == 0 )
+					{
+						num80 /= Main.rand.Next( 3 ) + 1;
+					}
+					num79 -= (float)(1000000 * num80);
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 74, num80, false, 0, false, false );
+				}
+				else if( num79 > 10000f )
+				{
+					int num81 = (int)(num79 / 10000f);
+					if( num81 > 50 && Main.rand.Next( 5 ) == 0 )
+					{
+						num81 /= Main.rand.Next( 3 ) + 1;
+					}
+					if( Main.rand.Next( 5 ) == 0 )
+					{
+						num81 /= Main.rand.Next( 3 ) + 1;
+					}
+					num79 -= (float)(10000 * num81);
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 73, num81, false, 0, false, false );
+				}
+				else if( num79 > 100f )
+				{
+					int num82 = (int)(num79 / 100f);
+					if( num82 > 50 && Main.rand.Next( 5 ) == 0 )
+					{
+						num82 /= Main.rand.Next( 3 ) + 1;
+					}
+					if( Main.rand.Next( 5 ) == 0 )
+					{
+						num82 /= Main.rand.Next( 3 ) + 1;
+					}
+					num79 -= (float)(100 * num82);
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 72, num82, false, 0, false, false );
+				}
+				else
+				{
+					int num83 = (int)num79;
+					if( num83 > 50 && Main.rand.Next( 5 ) == 0 )
+					{
+						num83 /= Main.rand.Next( 3 ) + 1;
+					}
+					if( Main.rand.Next( 5 ) == 0 )
+					{
+						num83 /= Main.rand.Next( 4 ) + 1;
+					}
+					if( num83 < 1 )
+					{
+						num83 = 1;
+					}
+					num79 -= (float)num83;
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 71, num83, false, 0, false, false );
+				}
 			}
 		}
 	}

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace TerrariaReworked.NPCs
@@ -46,8 +48,90 @@ namespace TerrariaReworked.NPCs
 			nextSlot = realItemCount;
 		}
 
+		// ported banner dropping code (needed to keep dropping banners while blocking other npc loot).
+		public static void BANNER( NPC npc )
+		{
+			int num2 = Item.NPCtoBanner( npc.BannerID() );
+			if( num2 > 0 && !NPCID.Sets.ExcludedFromDeathTally[npc.type] )
+			{
+				bool flag2;
+				if( npc.realLife >= 0 )
+				{
+					flag2 = Main.npc[npc.realLife].AnyInteractions();
+				}
+				else
+				{
+					flag2 = npc.AnyInteractions();
+				}
+				if( flag2 )
+				{
+					NPC.killCount[num2]++;
+					if( Main.netMode == 2 )
+					{
+						NetMessage.SendData( 83, -1, -1, null, num2, 0f, 0f, 0f, 0, 0, 0 );
+					}
+					int num3 = ItemID.Sets.KillsToBanner[Item.BannerToItem( num2 )];
+					if( NPC.killCount[num2] % num3 == 0 && num2 > 0 )
+					{
+						int num4 = Item.BannerToNPC( num2 );
+						new NPC().SetDefaults( num4, -1f );
+						int num5 = npc.lastInteraction;
+						if( !Main.player[num5].active || Main.player[num5].dead )
+						{
+							num5 = npc.FindClosestPlayer();
+						}
+						NetworkText networkText = NetworkText.FromKey( "Game.EnemiesDefeatedAnnouncement", new object[]
+						{
+					NPC.killCount[num2],
+					NetworkText.FromKey(Lang.GetNPCName(num4).Key, new object[0])
+						} );
+						if( num5 >= 0 && num5 < 255 )
+						{
+							networkText = NetworkText.FromKey( "Game.EnemiesDefeatedByAnnouncement", new object[]
+							{
+						Main.player[num5].name,
+						NPC.killCount[num2],
+						NetworkText.FromKey(Lang.GetNPCName(num4).Key, new object[0])
+							} );
+						}
+						if( Main.netMode == 0 )
+						{
+							Main.NewText( networkText.ToString(), 250, 250, 0, false );
+						}
+						else if( Main.netMode == 2 )
+						{
+							NetMessage.BroadcastChatMessage( networkText, new Color( 250, 250, 0 ), -1 );
+						}
+						int num6 = Item.BannerToItem( num2 );
+						Vector2 position = npc.position;
+						if( num5 >= 0 && num5 < 255 )
+						{
+							position = Main.player[num5].position;
+						}
+						Item.NewItem( (int)position.X, (int)position.Y, npc.width, npc.height, num6, 1, false, 0, false, false );
+					}
+				}
+			}
+		}
+
 		public override bool PreNPCLoot( NPC npc )
 		{
+			if( npc.type == NPCID.GoblinSorcerer )
+			{
+				if( Main.rand.Next( 15 ) == 0 )
+				{
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType( "ChaosTome" ), 1, false, 0, false, false );
+				}
+				if( Main.rand.Next( 2 ) == 0 )
+				{
+					int amt = Main.rand.Next( 1, 6 );
+					Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SpikyBall, amt, false, 0, false, false );
+				}
+
+				BANNER( npc );
+
+				return false;
+			}
 			if( npc.type == NPCID.Mothron )
 			{
 				if( NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 )
@@ -56,14 +140,6 @@ namespace TerrariaReworked.NPCs
 					{
 						Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MothronWings, 1, false, -1, false, false );
 					}
-					/*if( Main.rand.Next( 4 ) == 0 )
-					{
-						Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1570, 1, false, -1, false, false );
-					}
-					else if( Main.rand.Next( 3 ) == 0 && NPC.downedPlantBoss )
-					{
-						Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3292, 1, false, -1, false, false );
-					}*/
 					if( Main.rand.Next( 4 ) != 0 ) // 1, 2, 3, not 4 (75%)
 					{
 						int rand = Main.rand.Next( 4 );
@@ -89,6 +165,9 @@ namespace TerrariaReworked.NPCs
 						Item.NewItem( (int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TheEyeOfCthulhu, 1, false, -1, false, false );
 					}
 				}
+
+				BANNER( npc );
+
 				return false;
 			}
 			return true;

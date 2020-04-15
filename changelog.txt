@@ -1,4 +1,124 @@
 ##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.3 (Alpha)
+##		
+##		
+##
+
+- Added a placeholder 'generated structure' for the Hellcastle
+- Changed a lot of sprites (both vanilla & modded)
+- Completely ported vanilla world generation (might break other mods, but it's a necessary step - still uses legacy pass names)
+- - World generation might sometimes freeze (happens around 5% of the time)
+- Added tier 5 accessory prefixes (+5% bonus stat)
+- Updated Oblivion bossfight
+- Added clouds
+
+- Added 37 items:
+- - Adamantite Jackhammer
+- - Broken Hero Ax
+- - Broken Hero Pick
+- - Broken Hero Spear
+- - Cinderplate
+- - Cinderplate Bar
+- - Cobalt Jackhammer
+- - Copper Flail
+- - Copper Ring
+- - Copper Spear
+- - Cursed Forge
+- - Gold Flail
+- - Gold Ring
+- - Gold Spear
+- - Ichor Forge
+- - Iron Flail
+- - Iron Ring
+- - Iron Spear
+- - Lead Flail
+- - Lead Spear
+- - Mythril Jackhammer
+- - Orichalcum Jackhammer
+- - Palladium Jackhammer
+- - Platinum Flail
+- - Platinum Spear
+- - Ria
+- - Silver Flail
+- - Silver Ring
+- - Silver Spear
+- - Terra Spear
+- - Tin Flail
+- - Tin Spear
+- - Titanium Jackhammer
+- - True Breakdawn
+- - True Dark Lance
+- - True Gungnir
+- - True Pickaxe of Dusk
+- - Tungsten Flail
+- - Tungsten Spear
+
+- Added 2 NPCs:
+- - Oblivion Head 1
+- - Oblivion Head 2
+
+- Lesser changes & fixes:
+- - New pixie sprite now renders properly
+- - Fixed crafting recipe for the Eye of Oblivion
+
+
+
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.2 (Alpha) - 'Superhardmode Update'
+##		08/06/2019
+##		
+##
+
+- Added superhardmode
+
+- Added 21 items:
+- - Adamantite Mace
+- - Berserker Bludgeon
+- - Berserker Nightmare
+- - Chaos Tome
+- - Cobalt Mace
+- - Copper Mace
+- - Eye of Oblivion
+- - Fiery Mace
+- - Gold Mace
+- - Iron Mace
+- - Lead Mace
+- - Mythril Mace
+- - Oblivion Bludgeon
+- - Orichalcum Mace
+- - Palladium Mace
+- - Platinum Mace
+- - Silver Mace
+- - Soul of Blight
+- - Tin Mace
+- - Titanium Mace
+- - Tungsten Mace
+
+- Added 1 NPC:
+- - Oblivion Eye
+
+- Lesser changes & fixes:
+- - Berserker and Oblivion bars (placed) no longer duplicate
+- - Changed Berserker Blade sprite
+- - Resistant Wood now takes pickaxe to mine (min. 200% power)
+- - Changed Berserker Blade's use time from 12 to 15
+- - Changed Clockwork Megashark and Clockwork Megalodon sprites
+- - Changed Minishark texture
+- - Tweaked Illegal Weapon Instructions sprite
+- - Berserker Blade no longer inflicts On Fire debuff
+- - Dungeon Bow now shoots a stream of water instead of normal arrows
+- - Changed Sunfury sprite
+- - Changed Bloodshot Eye sprite
+- - Tweaked Stone Sword sprite
+- - Changed Caesium Forge sprite
+- - Tweaked Impervious Brick (placed) sprite
+- - Changed all Spell Tome sprites
+- - Changed Megalodon and Clockwork Megalodon Sprites
+- - Changed Berserker-Tier items' projectile damage to 75
+
+
+
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
 ##		v0.0.1 (Alpha) - 'Initial alpha release'
 ##		25/05/2019
 ##		
@@ -75,99 +195,3 @@
 
 - Added 1 buff:
 - - Oblivion
-
-
-##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
-##		v0.0.2 (Alpha) - 'Superhardmode Update'
-##		08/06/2019
-##		
-##
-
-- Added superhardmode
-
-- Added 21 items:
-- - Adamantite Mace
-- - Berserker Bludgeon
-- - Berserker Nightmare
-- - Chaos Tome
-- - Cobalt Mace
-- - Copper Mace
-- - Eye of Oblivion
-- - Fiery Mace
-- - Gold Mace
-- - Iron Mace
-- - Lead Mace
-- - Mythril Mace
-- - Oblivion Bludgeon
-- - Orichalcum Mace
-- - Palladium Mace
-- - Platinum Mace
-- - Silver Mace
-- - Soul of Blight
-- - Tin Mace
-- - Titanium Mace
-- - Tungsten Mace
-
-- Added 1 NPC:
-- - Oblivion Eye
-
-- Lesser changes & fixes:
-- - Berserker and Oblivion bars (placed) no longer duplicate
-- - Changed Berserker Blade sprite
-- - Resistant Wood now takes pickaxe to mine (min. 200% power)
-- - Changed Berserker Blade's use time from 12 to 15
-- - Changed Clockwork Megashark and Clockwork Megalodon sprites
-- - Changed Minishark texture
-- - Tweaked Illegal Weapon Instructions sprite
-- - Berserker Blade no longer inflicts On Fire debuff
-- - Dungeon Bow now shoots a stream of water instead of normal arrows
-- - Changed Sunfury sprite
-- - Changed Bloodshot Eye sprite
-- - Tweaked Stone Sword sprite
-- - Changed Caesium Forge sprite
-- - Tweaked Impervious Brick (placed) sprite
-- - Changed all Spell Tome sprites
-- - Changed Megalodon and Clockwork Megalodon Sprites
-- - Changed Berserker-Tier items' projectile damage to 75
-
-
-##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
-##		v0.0.3 (Alpha)
-##		
-##		
-##
-
-- Added a placeholder 'generated structure' for the Hellcastle.
-- Changed a lot of sprites (both vanilla & modded)
-
-- Added 22 items:
-- - Adamantite Jackhammer
-- - Cobalt Jackhammer
-- - Copper Flail
-- - Copper Spear
-- - Gold Flail
-- - Gold Spear
-- - Iron Flail
-- - Iron Spear
-- - Lead Flail
-- - Lead Spear
-- - Mythril Jackhammer
-- - Orichalcum Jackhammer
-- - Palladium Jackhammer
-- - Platinum Flail
-- - Platinum Spear
-- - Silver Flail
-- - Silver Spear
-- - Tin Flail
-- - Tin Spear
-- - Titanium Jackhammer
-- - Tungsten Flail
-- - Tungsten Spear
-
-- Added 2 NPCs:
-- - Oblivion Head 1
-- - Oblivion Head 2
-
-- Lesser changes & fixes:
-- - New pixie sprite now renders properly
-- - Fixed crafting recipe for the Eye of Oblivion

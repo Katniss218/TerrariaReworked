@@ -42,7 +42,10 @@ namespace TerrariaReworked.Items
 			{
 				return false;
 			}
-			if( NPC.AnyNPCs( mod.NPCType( "OblivionEye" ) ) )
+			if( NPC.AnyNPCs( mod.NPCType( "OblivionEye" ) ) 
+				|| NPC.AnyNPCs( mod.NPCType( "OblivionBody" ) )
+				|| NPC.AnyNPCs( mod.NPCType( "OblivionHead1" ) )
+				|| NPC.AnyNPCs( mod.NPCType( "OblivionHead2" ) ) )
 			{
 				return false;
 			}

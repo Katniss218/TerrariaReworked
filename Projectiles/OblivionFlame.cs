@@ -70,6 +70,9 @@ namespace TerrariaReworked.Projectiles
 					Main.dust[dust].noGravity = true;
 			}
 			Main.PlaySound( SoundID.Dig, projectile.position );
+
+			target.AddBuff( mod.BuffType( "Oblivion" ), 240 );
+
 			projectile.timeLeft = 0;
 		}
 
