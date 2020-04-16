@@ -2949,14 +2949,29 @@ namespace TerrariaReworked
 				{
 					int x = WorldGen.genRand.Next( 1, Main.maxTilesX - 3 );
 					int y = (int)(worldSurfaceMax + 20.0);
-					if( MyWorld.evilCombo == EvilCombo.Corruption )
+					if( WorldGen.genRand.Next( 2 ) == 0 )
+					{
+						if( MyWorld.evilCombo == EvilCombo.Corruption )
+						{
+							WorldGen.Place3x2( x, y, TileID.DemonAltar, 0 );
+						}
+						else if( MyWorld.evilCombo == EvilCombo.Crimson )
+						{
+							WorldGen.Place3x2( x, y, TileID.DemonAltar, 1 );
+						}
+					}
+					else
+					{
+						WorldGen.Place3x2( x, y, (ushort)ModMain.instance.TileType( "HallowedAltar" ), 0 );
+					}
+					/*if( MyWorld.evilCombo == EvilCombo.Corruption )
 					{
 						WorldGen.Place3x2( x, y, TileID.DemonAltar, 0 );
 					}
 					else if( MyWorld.evilCombo == EvilCombo.Crimson )
 					{
 						WorldGen.Place3x2( x, y, TileID.DemonAltar, 1 );
-					}
+					}*/
 					if( Main.tile[x, y].type == TileID.DemonAltar )
 					{
 						break;
