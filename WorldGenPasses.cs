@@ -281,6 +281,14 @@ namespace TerrariaReworked
 				MyWorld.evilCombo = EvilCombo.Crimson;
 			}
 
+			if( MyWorld.evilCombo == EvilCombo.Crimson )
+			{
+				copperOreId = 166;
+				ironOreId = 167;
+				silverOreId = 168;
+				goldOreId = 169;
+			}
+
 			if( jungleShrineTile == 0 )
 			{
 				jungleShrineTile = 45;

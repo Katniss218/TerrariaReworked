@@ -1,6 +1,22 @@
 ##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
-##		v0.0.3 (Alpha)
+##		v0.0.4 (Alpha)
 ##		
+##		
+##
+
+- The pre-hardmode ores that generate now depend on the biome combo chosen.
+
+- Added 4 items:
+- - Lead Ring
+- - Platinum Ring
+- - Tin Ring
+- - Tungsten Ring
+
+
+
+##==================================-=====-==--=-=--=----=-------- -- - -  -   -  -     -     -         -
+##		v0.0.3 (Alpha)
+##		15/04/2020
 ##		
 ##
 

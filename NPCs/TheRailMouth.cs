@@ -94,6 +94,8 @@ namespace TerrariaReworked.NPCs
 				MyWorld.InitiateSuperhardmode( (int)(npc.position.X / 16), (int)(npc.position.Y / 16) );
 			}
 
+			Item.NewItem( this.npc.getRect(), mod.ItemType( "SoulofBlight" ), Main.rand.Next( 20, 41 ) );
+
 			Gore.NewGore( npc.position, npc.velocity, 9, 1f );
 			Gore.NewGore( npc.position, npc.velocity, 10, 1f );
 		}

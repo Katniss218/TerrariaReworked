@@ -32,16 +32,18 @@ namespace TerrariaReworked.Items
 			this.item.shootSpeed = 10f;
 			this.item.useAmmo = AmmoID.Bullet;
 		}
-		/*
+		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe( mod );
-			recipe.AddIngredient( null, "ExampleItem", 10 );
-			recipe.AddTile( null, "ExampleWorkbench" );
+			recipe.AddIngredient( ItemID.Megashark, 1 );
+			recipe.AddIngredient( mod.ItemType( "SoulofBlight" ), 20 );
+			recipe.AddIngredient( ItemID.IllegalGunParts, 2 );
+			recipe.AddTile( null, "AdamantiteAnvil" );
 			recipe.SetResult( this );
 			recipe.AddRecipe();
 		}
-		*/
+		
 		public override bool ConsumeAmmo(Player player)
 		{
 			return Main.rand.NextFloat() >= 0.50f;
