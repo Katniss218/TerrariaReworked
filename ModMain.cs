@@ -260,7 +260,30 @@ namespace TerrariaReworked
 
 			Main.itemTexture[ItemID.EyeoftheGolem] = GetTexture( "Items/Vanilla/EyeoftheGolem" );
 
+			Main.tileTexture[TileID.Grass] = GetTexture( "Tiles/Vanilla/Grass" );
+			Main.tileTexture[TileID.JungleGrass] = GetTexture( "Tiles/Vanilla/JungleGrass" );
+			Main.tileTexture[TileID.Dirt] = GetTexture( "Tiles/Vanilla/Dirt" );
+			Main.tileTexture[TileID.ClayBlock] = GetTexture( "Tiles/Vanilla/Clay" );
+			Main.tileTexture[TileID.Mud] = GetTexture( "Tiles/Vanilla/Mud" );
+			Main.tileTexture[TileID.Sand] = GetTexture( "Tiles/Vanilla/Sand" );
+			Main.tileTexture[TileID.Stone] = GetTexture( "Tiles/Vanilla/Stone" );
 			Main.tileTexture[TileID.Chlorophyte] = GetTexture( "Tiles/Vanilla/ChlorophyteOre" );
+
+			Main.tileTexture[3] = GetTexture( "Tiles/Vanilla/Tiles_3" );
+			Main.tileTexture[61] = GetTexture( "Tiles/Vanilla/Tiles_61" );
+			Main.tileTexture[73] = GetTexture( "Tiles/Vanilla/Tiles_73" );
+			Main.tileTexture[74] = GetTexture( "Tiles/Vanilla/Tiles_74" );
+			Main.tileTexture[185] = GetTexture( "Tiles/Vanilla/Tiles_185" );
+			Main.tileTexture[186] = GetTexture( "Tiles/Vanilla/Tiles_186" );
+			Main.tileTexture[187] = GetTexture( "Tiles/Vanilla/Tiles_187" );
+
+			Main.tileTexture[TileID.JungleVines] = GetTexture( "Tiles/Vanilla/JungleVines" );
+			Main.tileTexture[TileID.Vines] = GetTexture( "Tiles/Vanilla/Vines" );
+
+			Main.wallTexture[WallID.Dirt] = GetTexture( "Walls/Vanilla/DirtWall" );
+			Main.wallTexture[WallID.DirtUnsafe] = GetTexture( "Walls/Vanilla/DirtWall" );
+			Main.wallTexture[WallID.MudUnsafe] = GetTexture( "Walls/Vanilla/MudWall" );
+			Main.wallTexture[WallID.Stone] = GetTexture( "Walls/Vanilla/StoneWall" );
 
 			SetNPCTexture( NPCID.Pixie, GetTexture( "NPCs/Vanilla/Pixie" ) );
 

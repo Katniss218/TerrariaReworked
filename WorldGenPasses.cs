@@ -271,7 +271,7 @@ namespace TerrariaReworked
 
 			MyWorld.worldProgressionState = WorldProgressionState.PreHardmode;
 
-			MyWorld.evilCombo = WorldGen.genRand.Next( 2 ) == 0 ? EvilCombo.Crimson : EvilCombo.Corruption;
+			MyWorld.evilCombo = EvilCombo.Cessation; // WorldGen.genRand.Next( 2 ) == 0 ? EvilCombo.Crimson : EvilCombo.Corruption;
 			if( WorldGen.WorldGenParam_Evil == 0 ) // forced corruption (worldgen GUI)
 			{
 				MyWorld.evilCombo = EvilCombo.Corruption;
@@ -1544,7 +1544,7 @@ namespace TerrariaReworked
 		private static void ShiniesFunc( GenerationProgress progress )
 		{
 			// worldSurfaceLow is actually the highest surface tile. In practice you might want to use WorldGen.rockLayer or other WorldGen values.
-			progress.Message = "Shinies";
+			progress.Message = "Shinies 1";
 
 
 			// COPPER (top, mid, - )
@@ -1554,18 +1554,18 @@ namespace TerrariaReworked
 
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000090); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMax, (int)(Main.maxTilesY * 0.6) ), WorldGen.genRand.Next( 4, 7 ), WorldGen.genRand.Next( 3, 7 ), copperOreId );
-
+			progress.Message = "Shinies 2";
 			//for( int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0002); i++ )
 			//	WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerLow, Main.maxTilesY ), WorldGen.genRand.Next( 4, 9 ), WorldGen.genRand.Next( 4, 8 ), copperOreId );
 
 			// IRON (top, mid, - )
-
+			progress.Message = "Shinies 3";
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000040); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMin, (int)worldSurfaceMax ), WorldGen.genRand.Next( 4, 6 ), WorldGen.genRand.Next( 2, 6 ), ironOreId );
 
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000120); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMax, (int)(Main.maxTilesY * 0.75) ), WorldGen.genRand.Next( 4, 8 ), WorldGen.genRand.Next( 3, 7 ), ironOreId );
-
+			progress.Message = "Shinies 4";
 			//for( int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0002); i++ )
 			//	WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerLow, Main.maxTilesY ), WorldGen.genRand.Next( 4, 9 ), WorldGen.genRand.Next( 4, 8 ), ironOreId );
 
@@ -1573,13 +1573,13 @@ namespace TerrariaReworked
 
 			//for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.00017); i++ )
 			//	WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMin, (int)worldSurfaceMax ), WorldGen.genRand.Next( 4, 9 ), WorldGen.genRand.Next( 4, 8 ), silverOreId );
-
+			progress.Message = "Shinies 5";
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000050); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMax, (int)rockLayerMin ), WorldGen.genRand.Next( 3, 6 ), WorldGen.genRand.Next( 3, 6 ), silverOreId );
 
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000150); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerMin, Main.maxTilesY ), WorldGen.genRand.Next( 5, 9 ), WorldGen.genRand.Next( 4, 8 ), silverOreId );
-
+			progress.Message = "Shinies 6";
 			// GOLD (topt, mid, low )
 
 			//for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.00012); i++ )
@@ -1591,12 +1591,12 @@ namespace TerrariaReworked
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000130); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerMin, Main.maxTilesY ), WorldGen.genRand.Next( 4, 9 ), WorldGen.genRand.Next( 4, 8 ), goldOreId );
 
-
+			progress.Message = "Shinies 7";
 			// COAL
 
 			for( int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00003); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMin, (int)(Main.maxTilesY * 0.666) ), WorldGen.genRand.Next( 7, 10 ), WorldGen.genRand.Next( 20, 32 ), ModMain.instance.TileType( "Coal" ) );
-
+			progress.Message = "Shinies 8";
 			if( MyWorld.evilCombo == EvilCombo.Corruption )
 			{
 				for( int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.000020); i++ )
@@ -2045,8 +2045,243 @@ namespace TerrariaReworked
 					num++;
 				}
 			}
+			else if( MyWorld.evilCombo == EvilCombo.Cessation )
+			{
+				WorldGenUtils.corruptStone = (ushort)ModMain.instance.TileType( "Rotstone" );
+				WorldGenUtils.corruptSand = (ushort)ModMain.instance.TileType( "Rotsand" );
+				WorldGenUtils.corruptWall = (ushort)ModMain.instance.WallType( "RotstoneWallUnsafe" );
+				WorldGenUtils.corruptGrass = (ushort)ModMain.instance.TileType( "CessatedGrass" );
+
+				progress.Message = Lang.gen[20].Value;
+				int num19 = 0;
+				while( (double)num19 < (double)Main.maxTilesX * 0.00045 )
+				{
+					progress.Set( (float)((double)num19 / ((double)Main.maxTilesX * 0.00045)) );
+
+					bool flag5 = false;
+					int xLonger = 0;
+					int firstX = 0;
+					int lastX = 0;
+					while( !flag5 )
+					{
+						int num23 = 0;
+						flag5 = true;
+						int num24 = Main.maxTilesX / 2;
+						int num25 = 200;
+						xLonger = WorldGen.genRand.Next( 320, Main.maxTilesX - 320 );
+						firstX = xLonger - WorldGen.genRand.Next( 200 ) - 100;
+						lastX = xLonger + WorldGen.genRand.Next( 200 ) + 100;
+						if( firstX < 285 )
+						{
+							firstX = 285;
+						}
+						if( lastX > Main.maxTilesX - 285 )
+						{
+							lastX = Main.maxTilesX - 285;
+						}
+						if( xLonger > num24 - num25 && xLonger < num24 + num25 )
+						{
+							flag5 = false;
+						}
+						if( firstX > num24 - num25 && firstX < num24 + num25 )
+						{
+							flag5 = false;
+						}
+						if( lastX > num24 - num25 && lastX < num24 + num25 )
+						{
+							flag5 = false;
+						}
+						if( xLonger > WorldGen.UndergroundDesertLocation.X && xLonger < WorldGen.UndergroundDesertLocation.X + WorldGen.UndergroundDesertLocation.Width )
+						{
+							flag5 = false;
+						}
+						if( firstX > WorldGen.UndergroundDesertLocation.X && firstX < WorldGen.UndergroundDesertLocation.X + WorldGen.UndergroundDesertLocation.Width )
+						{
+							flag5 = false;
+						}
+						if( lastX > WorldGen.UndergroundDesertLocation.X && lastX < WorldGen.UndergroundDesertLocation.X + WorldGen.UndergroundDesertLocation.Width )
+						{
+							flag5 = false;
+						}
+						for( int num26 = firstX; num26 < lastX; num26++ )
+						{
+							for( int num27 = 0; num27 < (int)Main.worldSurface; num27 += 5 )
+							{
+								if( Main.tile[num26, num27].active() && Main.tileDungeon[(int)Main.tile[num26, num27].type] )
+								{
+									flag5 = false;
+									break;
+								}
+								if( !flag5 )
+								{
+									break;
+								}
+							}
+						}
+						if( num23 < 200 && JungleX > firstX && JungleX < lastX )
+						{
+							num23++;
+							flag5 = false;
+						}
+					}
+					int num28 = 0;
+					for( int chasmX = firstX; chasmX < lastX; chasmX++ )
+					{
+						if( num28 > 0 )
+						{
+							num28--;
+						}
+						if( chasmX == xLonger || num28 == 0 )
+						{
+							int chasmY = (int)worldSurfaceMin;
+							while( (double)chasmY < Main.worldSurface - 1.0 )
+							{
+								if( Main.tile[chasmX, chasmY].active() || (Main.tile[chasmX, chasmY].wall > 0 && Main.tile[chasmX, chasmY].wall != WallID.Cloud) )
+								{
+									if( chasmX == xLonger )
+									{
+										num28 = 20;
+										WorldGenUtils.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 150 ) + 150, true );
+										break;
+									}
+									if( WorldGen.genRand.Next( 35 ) == 0 && num28 == 0 )
+									{
+										num28 = 30;
+										bool makeOrb = true;
+										WorldGenUtils.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 50 ) + 50, makeOrb );
+										break;
+									}
+									break;
+								}
+								else
+								{
+									chasmY++;
+								}
+							}
+						}
+						int yMin = (int)worldSurfaceMin;
+						while( (double)yMin < Main.worldSurface - 1.0 )
+						{
+							if( Main.tile[chasmX, yMin].active() )
+							{
+								int yMax = yMin + WorldGen.genRand.Next( 10, 14 );
+								for( int y = yMin; y < yMax; y++ )
+								{
+									if( (Main.tile[chasmX, y].type == TileID.Mud || Main.tile[chasmX, y].type == TileID.JungleGrass) && chasmX >= firstX + WorldGen.genRand.Next( 5 ) && chasmX < lastX - WorldGen.genRand.Next( 5 ) )
+									{
+										Main.tile[chasmX, y].type = TileID.Dirt;
+									}
+								}
+								break;
+							}
+							yMin++;
+						}
+					}
+					double yMarch = Main.worldSurface + 40.0;
+					for( int x = firstX; x < lastX; x++ )
+					{
+						yMarch += (double)WorldGen.genRand.Next( -2, 3 );
+						if( yMarch < Main.worldSurface + 30.0 )
+						{
+							yMarch = Main.worldSurface + 30.0;
+						}
+						if( yMarch > Main.worldSurface + 50.0 )
+						{
+							yMarch = Main.worldSurface + 50.0;
+						}
+						int m = x;
+						bool flag6 = false;
+						int n = (int)worldSurfaceMin;
+						while( (double)n < yMarch )
+						{
+							if( Main.tile[m, n].active() )
+							{
+								if( Main.tile[m, n].type == TileID.Sand && m >= firstX + WorldGen.genRand.Next( 5 ) && m <= lastX - WorldGen.genRand.Next( 5 ) )
+								{
+									Main.tile[m, n].type = WorldGenUtils.corruptSand;
+								}
+								if( Main.tile[m, n].type == TileID.Dirt && (double)n < Main.worldSurface - 1.0 && !flag6 )
+								{
+									grassSpread = 0;
+									WorldGen.SpreadGrass( m, n, TileID.Dirt, WorldGenUtils.corruptGrass, true, 0 );
+								}
+								flag6 = true;
+								if( Main.tile[m, n].type == TileID.Stone && m >= firstX + WorldGen.genRand.Next( 5 ) && m <= lastX - WorldGen.genRand.Next( 5 ) )
+								{
+									Main.tile[m, n].type = WorldGenUtils.corruptStone;
+								}
+								if( Main.tile[m, n].wall == WallID.HardenedSand )
+								{
+									Main.tile[m, n].wall = WallID.CorruptHardenedSand;
+								}
+								else if( Main.tile[m, n].wall == WallID.Sandstone )
+								{
+									Main.tile[m, n].wall = WallID.CorruptSandstone;
+								}
+								if( Main.tile[m, n].type == TileID.Grass )
+								{
+									Main.tile[m, n].type = WorldGenUtils.corruptGrass;
+								}
+								if( Main.tile[m, n].type == TileID.IceBlock )
+								{
+									Main.tile[m, n].type = TileID.CorruptIce;
+								}
+								else if( Main.tile[m, n].type == TileID.Sandstone )
+								{
+									Main.tile[m, n].type = TileID.CorruptSandstone;
+								}
+								else if( Main.tile[m, n].type == TileID.HardenedSand )
+								{
+									Main.tile[m, n].type = TileID.CorruptHardenedSand;
+								}
+							}
+							n++;
+						}
+					}
+					for( int num37 = firstX; num37 < lastX; num37++ )
+					{
+						for( int num38 = 0; num38 < Main.maxTilesY - 50; num38++ )
+						{
+							if( Main.tile[num37, num38].active() && Main.tile[num37, num38].type == WorldGenUtils.corruptOrb )
+							{
+								int startX = num37 - 13;
+								int endX = num37 + 13;
+								int startY = num38 - 13;
+								int endY = num38 + 13;
+								for( int x = startX; x < endX; x++ )
+								{
+									if( x > 10 && x < Main.maxTilesX - 10 )
+									{
+										for( int y = startY; y < endY; y++ )
+										{
+											if( Math.Abs( x - num37 ) + Math.Abs( y - num38 ) < 9 + WorldGen.genRand.Next( 11 ) && WorldGen.genRand.Next( 3 ) != 0 && Main.tile[x, y].type != WorldGenUtils.corruptOrb )
+											{
+												Main.tile[x, y].active( true );
+												Main.tile[x, y].type = WorldGenUtils.corruptStone;
+												if( Math.Abs( x - num37 ) <= 1 && Math.Abs( y - num38 ) <= 1 )
+												{
+													Main.tile[x, y].active( false );
+												}
+											}
+											if( Main.tile[x, y].type != WorldGenUtils.corruptOrb && Math.Abs( x - num37 ) <= 2 + WorldGen.genRand.Next( 3 ) && Math.Abs( y - num38 ) <= 2 + WorldGen.genRand.Next( 3 ) )
+											{
+												Main.tile[x, y].active( false );
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					num19++;
+				}
+			}
 			else
 			{
+				// corrupt.
+
+				WorldGenUtils.corruptStone = TileID.Ebonstone;
+
 				progress.Message = Lang.gen[20].Value;
 				int num19 = 0;
 				while( (double)num19 < (double)Main.maxTilesX * 0.00045 )
@@ -2136,14 +2371,14 @@ namespace TerrariaReworked
 									if( chasmX == xLonger )
 									{
 										num28 = 20;
-										WorldGen.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 150 ) + 150, true );
+										WorldGenUtils.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 150 ) + 150, true );
 										break;
 									}
 									if( WorldGen.genRand.Next( 35 ) == 0 && num28 == 0 )
 									{
 										num28 = 30;
 										bool makeOrb = true;
-										WorldGen.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 50 ) + 50, makeOrb );
+										WorldGenUtils.ChasmRunner( chasmX, chasmY, WorldGen.genRand.Next( 50 ) + 50, makeOrb );
 										break;
 									}
 									break;

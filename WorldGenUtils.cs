@@ -517,6 +517,469 @@ namespace TerrariaReworked
 			}
 		}
 
+
+		public static ushort corruptOre = TileID.Demonite;
+		public static ushort corruptStone = TileID.Ebonstone;
+		public static ushort corruptSand = TileID.Ebonsand;
+		public static ushort corruptGrass = TileID.CorruptGrass;
+		public static ushort corruptAltar = TileID.DemonAltar;
+		public static short corruptAltarData = 0;
+		public static ushort corruptOrb = TileID.ShadowOrbs;
+		public static short corruptOrbFrameX = 0; // 0 or 36
+
+		public static ushort corruptWall = WallID.EbonstoneUnsafe;
+
+		// Terraria.WorldGen
+		// Token: 0x06000753 RID: 1875 RVA: 0x0035CC5C File Offset: 0x0035AE5C
+		public static void AddOrb( int x, int y )
+		{
+			if( x < 10 || x > Main.maxTilesX - 10 )
+			{
+				return;
+			}
+			if( y < 10 || y > Main.maxTilesY - 10 )
+			{
+				return;
+			}
+			for( int i = x - 1; i < x + 1; i++ )
+			{
+				for( int j = y - 1; j < y + 1; j++ )
+				{
+					if( Main.tile[i, j].active() && Main.tile[i, j].type == corruptOrb )
+					{
+						return;
+					}
+				}
+			}
+			short num = corruptOrbFrameX;
+			
+			Main.tile[x - 1, y - 1].active( true );
+			Main.tile[x - 1, y - 1].type = corruptOrb;
+			Main.tile[x - 1, y - 1].frameX = num;
+			Main.tile[x - 1, y - 1].frameY = 0;
+			Main.tile[x, y - 1].active( true );
+			Main.tile[x, y - 1].type = corruptOrb;
+			Main.tile[x, y - 1].frameX = (short)(18 + num);
+			Main.tile[x, y - 1].frameY = 0;
+			Main.tile[x - 1, y].active( true );
+			Main.tile[x - 1, y].type = corruptOrb;
+			Main.tile[x - 1, y].frameX = num;
+			Main.tile[x - 1, y].frameY = 18;
+			Main.tile[x, y].active( true );
+			Main.tile[x, y].type = corruptOrb;
+			Main.tile[x, y].frameX = (short)(18 + num);
+			Main.tile[x, y].frameY = 18;
+		}
+
+
+		// Terraria.WorldGen
+		// Token: 0x06000829 RID: 2089 RVA: 0x0039B2D0 File Offset: 0x003994D0
+		public static void ChasmRunner( int i, int j, int _steps, bool makeOrb = false )
+		{
+			bool flag = false;
+			bool dontMakeOrbs = false;
+			bool flag3 = false;
+			if( !makeOrb )
+			{
+				dontMakeOrbs = true;
+			}
+
+			float steps = _steps;
+
+			Vector2 pos = new Vector2( i, j );
+			Vector2 vector2;
+			vector2.X = WorldGen.genRand.Next( -10, 11 ) * 0.1f;
+			vector2.Y = WorldGen.genRand.Next( 11 ) * 0.2f + 0.5f;
+			int num2 = 5;
+			double num3 = WorldGen.genRand.Next( 5 ) + 7;
+			while( num3 > 0.0 )
+			{
+				if( steps > 0f )
+				{
+					num3 += WorldGen.genRand.Next( 3 );
+					num3 -= WorldGen.genRand.Next( 3 );
+					if( num3 < 7.0 )
+					{
+						num3 = 7.0;
+					}
+					if( num3 > 20.0 )
+					{
+						num3 = 20.0;
+					}
+					if( steps == 1f && num3 < 10.0 )
+					{
+						num3 = 10.0;
+					}
+				}
+				else if( pos.Y > Main.worldSurface + 45.0 )
+				{
+					num3 -= WorldGen.genRand.Next( 4 );
+				}
+				if( pos.Y > Main.rockLayer && steps > 0f )
+				{
+					steps = 0f;
+				}
+				steps -= 1f;
+				if( !flag && pos.Y > Main.worldSurface + 20.0 )
+				{
+					flag = true;
+					WorldGenUtils.ChasmRunnerSideways( (int)pos.X, (int)pos.Y, -1, WorldGen.genRand.Next( 20, 40 ) );
+					WorldGenUtils.ChasmRunnerSideways( (int)pos.X, (int)pos.Y, 1, WorldGen.genRand.Next( 20, 40 ) );
+				}
+				int startX;
+				int endX;
+				int startY;
+				int endY;
+				if( steps > num2 )
+				{
+					startX = (int)(pos.X - num3 * 0.5);
+					endX = (int)(pos.X + num3 * 0.5);
+					startY = (int)(pos.Y - num3 * 0.5);
+					endY = (int)(pos.Y + num3 * 0.5);
+					if( startX < 0 )
+					{
+						startX = 0;
+					}
+					if( endX > Main.maxTilesX - 1 )
+					{
+						endX = Main.maxTilesX - 1;
+					}
+					if( startY < 0 )
+					{
+						startY = 0;
+					}
+					if( endY > Main.maxTilesY )
+					{
+						endY = Main.maxTilesY;
+					}
+					for( int x = startX; x < endX; x++ )
+					{
+						for( int y = startY; y < endY; y++ )
+						{
+							if( (double)(Math.Abs( (float)x - pos.X ) + Math.Abs( (float)y - pos.Y )) < num3 * 0.5 * (1.0 + (double)WorldGen.genRand.Next( -10, 11 ) * 0.015) && Main.tile[x, y].type != corruptOrb && Main.tile[x, y].type != corruptOre )
+							{
+								Main.tile[x, y].active( false );
+							}
+						}
+					}
+				}
+				if( steps <= 2f && (double)pos.Y < Main.worldSurface + 45.0 )
+				{
+					steps = 2f;
+				}
+				if( steps <= 0f )
+				{
+					if( !dontMakeOrbs )
+					{
+						dontMakeOrbs = true;
+						WorldGenUtils.AddOrb( (int)pos.X, (int)pos.Y );
+					}
+					else if( !flag3 )
+					{
+						flag3 = false;
+						bool flag4 = false;
+						int num8 = 0;
+						while( !flag4 )
+						{
+							int x = WorldGen.genRand.Next( (int)pos.X - 25, (int)pos.X + 25 );
+							int y = WorldGen.genRand.Next( (int)pos.Y - 50, (int)pos.Y );
+							if( x < 5 )
+							{
+								x = 5;
+							}
+							if( x > Main.maxTilesX - 5 )
+							{
+								x = Main.maxTilesX - 5;
+							}
+							if( y < 5 )
+							{
+								y = 5;
+							}
+							if( y > Main.maxTilesY - 5 )
+							{
+								y = Main.maxTilesY - 5;
+							}
+							if( (double)y > Main.worldSurface )
+							{
+								WorldGen.Place3x2( x, y, corruptAltar, 0 );
+								if( Main.tile[x, y].type == corruptAltar )
+								{
+									flag4 = true;
+								}
+								else
+								{
+									num8++;
+									if( num8 >= 10000 )
+									{
+										flag4 = true;
+									}
+								}
+							}
+							else
+							{
+								flag4 = true;
+							}
+						}
+					}
+				}
+				pos += vector2;
+				vector2.X += (float)WorldGen.genRand.Next( -10, 11 ) * 0.01f;
+				if( (double)vector2.X > 0.3 )
+				{
+					vector2.X = 0.3f;
+				}
+				if( (double)vector2.X < -0.3 )
+				{
+					vector2.X = -0.3f;
+				}
+				startX = (int)((double)pos.X - num3 * 1.1);
+				endX = (int)((double)pos.X + num3 * 1.1);
+				startY = (int)((double)pos.Y - num3 * 1.1);
+				endY = (int)((double)pos.Y + num3 * 1.1);
+				if( startX < 1 )
+				{
+					startX = 1;
+				}
+				if( endX > Main.maxTilesX - 1 )
+				{
+					endX = Main.maxTilesX - 1;
+				}
+				if( startY < 0 )
+				{
+					startY = 0;
+				}
+				if( endY > Main.maxTilesY )
+				{
+					endY = Main.maxTilesY;
+				}
+				for( int m = startX; m < endX; m++ )
+				{
+					for( int n = startY; n < endY; n++ )
+					{
+						if( (double)(Math.Abs( (float)m - pos.X ) + Math.Abs( (float)n - pos.Y )) < num3 * 1.1 * (1.0 + (double)WorldGen.genRand.Next( -10, 11 ) * 0.015) )
+						{
+							if( Main.tile[m, n].type != corruptStone && n > j + WorldGen.genRand.Next( 3, 20 ) )
+							{
+								Main.tile[m, n].active( true );
+							}
+							if( steps <= num2 )
+							{
+								Main.tile[m, n].active( true );
+							}
+							if( Main.tile[m, n].type != corruptOrb )
+							{
+								Main.tile[m, n].type = corruptStone;
+							}
+						}
+					}
+				}
+				for( int num11 = startX; num11 < endX; num11++ )
+				{
+					for( int num12 = startY; num12 < endY; num12++ )
+					{
+						if( (double)(Math.Abs( (float)num11 - pos.X ) + Math.Abs( (float)num12 - pos.Y )) < num3 * 1.1 * (1.0 + (double)WorldGen.genRand.Next( -10, 11 ) * 0.015) )
+						{
+							if( Main.tile[num11, num12].type != corruptOrb )
+							{
+								Main.tile[num11, num12].type = corruptStone;
+							}
+							if( steps <= num2 )
+							{
+								Main.tile[num11, num12].active( true );
+							}
+							if( num12 > j + WorldGen.genRand.Next( 3, 20 ) )
+							{
+								Main.tile[num11, num12].wall = corruptWall;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Terraria.WorldGen
+		// Token: 0x06000825 RID: 2085 RVA: 0x00399948 File Offset: 0x00397B48
+		public static void ChasmRunnerSideways( int i, int j, int direction, int steps )
+		{
+			float num = (float)steps;
+			Vector2 vector;
+			vector.X = (float)i;
+			vector.Y = (float)j;
+			Vector2 vector2;
+			vector2.X = (float)WorldGen.genRand.Next( 10, 21 ) * 0.1f * (float)direction;
+			vector2.Y = (float)WorldGen.genRand.Next( -10, 10 ) * 0.01f;
+			double num2 = (double)(WorldGen.genRand.Next( 5 ) + 7);
+			while( num2 > 0.0 )
+			{
+				if( num > 0f )
+				{
+					num2 += (double)WorldGen.genRand.Next( 3 );
+					num2 -= (double)WorldGen.genRand.Next( 3 );
+					if( num2 < 7.0 )
+					{
+						num2 = 7.0;
+					}
+					if( num2 > 20.0 )
+					{
+						num2 = 20.0;
+					}
+					if( num == 1f && num2 < 10.0 )
+					{
+						num2 = 10.0;
+					}
+				}
+				else
+				{
+					num2 -= (double)WorldGen.genRand.Next( 4 );
+				}
+				if( (double)vector.Y > Main.rockLayer && num > 0f )
+				{
+					num = 0f;
+				}
+				num -= 1f;
+				int startX = (int)((double)vector.X - num2 * 0.5);
+				int endX = (int)((double)vector.X + num2 * 0.5);
+				int startY = (int)((double)vector.Y - num2 * 0.5);
+				int endY = (int)((double)vector.Y + num2 * 0.5);
+				if( startX < 0 )
+				{
+					startX = 0;
+				}
+				if( endX > Main.maxTilesX - 1 )
+				{
+					endX = Main.maxTilesX - 1;
+				}
+				if( startY < 0 )
+				{
+					startY = 0;
+				}
+				if( endY > Main.maxTilesY )
+				{
+					endY = Main.maxTilesY;
+				}
+				for( int k = startX; k < endX; k++ )
+				{
+					for( int l = startY; l < endY; l++ )
+					{
+						if( (double)(Math.Abs( (float)k - vector.X ) + Math.Abs( (float)l - vector.Y )) < num2 * 0.5 * (1.0 + (double)WorldGen.genRand.Next( -10, 11 ) * 0.015) && Main.tile[k, l].type != corruptOrb && Main.tile[k, l].type != corruptOre )
+						{
+							Main.tile[k, l].active( false );
+						}
+					}
+				}
+				vector += vector2;
+				vector2.Y += (float)WorldGen.genRand.Next( -10, 10 ) * 0.1f;
+				if( vector.Y < (float)(j - 20) )
+				{
+					vector2.Y += (float)WorldGen.genRand.Next( 20 ) * 0.01f;
+				}
+				if( vector.Y > (float)(j + 20) )
+				{
+					vector2.Y -= (float)WorldGen.genRand.Next( 20 ) * 0.01f;
+				}
+				if( (double)vector2.Y < -0.5 )
+				{
+					vector2.Y = -0.5f;
+				}
+				if( (double)vector2.Y > 0.5 )
+				{
+					vector2.Y = 0.5f;
+				}
+				vector2.X += (float)WorldGen.genRand.Next( -10, 11 ) * 0.01f;
+				if( direction == -1 )
+				{
+					if( (double)vector2.X > -0.5 )
+					{
+						vector2.X = -0.5f;
+					}
+					if( vector2.X < -2f )
+					{
+						vector2.X = -2f;
+					}
+				}
+				else if( direction == 1 )
+				{
+					if( (double)vector2.X < 0.5 )
+					{
+						vector2.X = 0.5f;
+					}
+					if( vector2.X > 2f )
+					{
+						vector2.X = 2f;
+					}
+				}
+				startX = (int)((double)vector.X - num2 * 1.1);
+				endX = (int)((double)vector.X + num2 * 1.1);
+				startY = (int)((double)vector.Y - num2 * 1.1);
+				endY = (int)((double)vector.Y + num2 * 1.1);
+				if( startX < 1 )
+				{
+					startX = 1;
+				}
+				if( endX > Main.maxTilesX - 1 )
+				{
+					endX = Main.maxTilesX - 1;
+				}
+				if( startY < 0 )
+				{
+					startY = 0;
+				}
+				if( endY > Main.maxTilesY )
+				{
+					endY = Main.maxTilesY;
+				}
+				for( int x = startX; x < endX; x++ )
+				{
+					for( int y = startY; y < endY; y++ )
+					{
+						if( Math.Abs( x - vector.X ) + Math.Abs( y - vector.Y ) < num2 * 1.1 * (1.0 + WorldGen.genRand.Next( -10, 11 ) * 0.015) && Main.tile[x, y].wall != 3 )
+						{
+							if( Main.tile[x, y].type != corruptStone && y > j + WorldGen.genRand.Next( 3, 20 ) )
+							{
+								Main.tile[x, y].active( true );
+							}
+							Main.tile[x, y].active( true );
+							if( Main.tile[x, y].type != corruptOrb && Main.tile[x, y].type != corruptOre )
+							{
+								Main.tile[x, y].type = corruptStone;
+							}
+							if( Main.tile[x, y].wall == WallID.DirtUnsafe )
+							{
+								Main.tile[x, y].wall = 0;
+							}
+						}
+					}
+				}
+				for( int x = startX; x < endX; x++ )
+				{
+					for( int y = startY; y < endY; y++ )
+					{
+						if( Math.Abs( x - vector.X ) + Math.Abs( y - vector.Y ) < num2 * 1.1 * (1.0 + WorldGen.genRand.Next( -10, 11 ) * 0.015) && Main.tile[x, y].wall != corruptWall )
+						{
+							if( Main.tile[x, y].type != corruptOrb && Main.tile[x, y].type != corruptOre )
+							{
+								Main.tile[x, y].type = corruptStone;
+							}
+							Main.tile[x, y].active( true );
+							WorldGen.PlaceWall( x, y, corruptWall, true );
+						}
+					}
+				}
+			}
+			if( WorldGen.genRand.Next( 3 ) == 0 )
+			{
+				int x = (int)vector.X;
+				int y = (int)vector.Y;
+				while( !Main.tile[x, y].active() )
+				{
+					y++;
+				}
+				WorldGen.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 3, 7 ), corruptOre, false, 0f, 0f, false, true );
+			}
+		}
+
+
+
 		public static int CountNearBlocksTypes( int i, int j, int radius, int cap = 0, params int[] tiletypes )
 		{
 			if( tiletypes.Length == 0 )
