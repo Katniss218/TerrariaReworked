@@ -11,7 +11,7 @@ namespace TerrariaReworked.Walls
 			Main.wallHouse[Type] = true;
 			dustType = mod.DustType( "Sparkle" );
 			//drop = ItemType();
-			AddMapEntry( new Color( 150, 150, 150 ) );
+			AddMapEntry( new Color( 10, 30, 15 ) );
 		}
 
 		public override void NumDust( int i, int j, bool fail, ref int num )

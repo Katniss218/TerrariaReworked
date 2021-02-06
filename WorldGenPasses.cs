@@ -118,6 +118,7 @@ namespace TerrariaReworked
 			tasks.Add( new PassLegacy( "Mud Caves To Grass", MudCavesToGrassFunc ) );
 			tasks.Add( new PassLegacy( "Mud To Dirt", MudToDirtFunc ) );
 			tasks.Add( new PassLegacy( "Full Desert", FullDesertFunc ) );
+			tasks.Add( new PassLegacy( "Corruption", CorruptionFunc ) );
 			tasks.Add( new PassLegacy( "Clouds", CloudsFunc ) );
 			tasks.Add( new PassLegacy( "Floating Islands", FloatingIslandsFunc ) );
 			tasks.Add( new PassLegacy( "Mushroom Patches", MushroomPatchesFunc ) );
@@ -128,7 +129,6 @@ namespace TerrariaReworked
 			tasks.Add( new PassLegacy( "Lakes", LakesFunc ) );
 			tasks.Add( new PassLegacy( "Dungeon", DungeonFunc ) );
 			tasks.Add( new PassLegacy( "Dungeon Chests", DungeonChestsFunc ) );
-			tasks.Add( new PassLegacy( "Corruption", CorruptionFunc ) );
 			tasks.Add( new PassLegacy( "Slush", SlushFunc ) );
 
 
@@ -502,14 +502,14 @@ namespace TerrariaReworked
 						y++;
 					}
 					arrX[j] = x;
-					arrY[j] = y - WorldGen.genRand.Next( 11, 16 );
+					arrY[j] = y - WorldGen.genRand.Next( 10, 16 );
 					x += WorldGen.genRand.Next( 5, 11 );
 				}
 				// place dirt above the ground (speedX, speedY).
 				for( int j = 0; j < tunnelLength; j++ )
 				{
-					WorldGenUtils.TileRunner( arrX[j], arrY[j], WorldGen.genRand.Next( 5, 8 ), WorldGen.genRand.Next( 6, 9 ), TileID.Dirt, true, -2f, -0.3f, false, true );
-					WorldGenUtils.TileRunner( arrX[j], arrY[j], WorldGen.genRand.Next( 5, 8 ), WorldGen.genRand.Next( 6, 9 ), TileID.Dirt, true, 2f, -0.3f, false, true );
+					WorldGenUtils.TileRunner( arrX[j], arrY[j], WorldGen.genRand.Next( 5, 10 ), WorldGen.genRand.Next( 6, 10 ), TileID.Dirt, true, -2f, -0.3f, false, true );
+					WorldGenUtils.TileRunner( arrX[j], arrY[j], WorldGen.genRand.Next( 5, 10 ), WorldGen.genRand.Next( 6, 10 ), TileID.Dirt, true, 2f, -0.3f, false, true );
 				}
 			}
 		}
@@ -784,7 +784,7 @@ namespace TerrariaReworked
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.005); i++ )
 			{
 				int x = WorldGen.genRand.Next( 0, Main.maxTilesX );
-				int y = WorldGen.genRand.Next( (int)rockLayerMin, Main.maxTilesY );
+				int y = WorldGen.genRand.Next( (int)rockLayerMin, (int)(Main.maxTilesY * 0.75f) );
 				WorldGenUtils.TileRunner( x, y, WorldGen.genRand.Next( 2, 6 ), WorldGen.genRand.Next( 2, 40 ), 0 );
 			}
 		}
@@ -1573,10 +1573,10 @@ namespace TerrariaReworked
 
 			//for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.00017); i++ )
 			//	WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMin, (int)worldSurfaceMax ), WorldGen.genRand.Next( 4, 9 ), WorldGen.genRand.Next( 4, 8 ), silverOreId );
-			progress.Message = "Shinies 5";
+			progress.Message = "Shinies silver-1";
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000050); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)worldSurfaceMax, (int)rockLayerMin ), WorldGen.genRand.Next( 3, 6 ), WorldGen.genRand.Next( 3, 6 ), silverOreId );
-
+			progress.Message = "Shinies silver-2";
 			for( int i = 0; i < (int)(Main.maxTilesX * Main.maxTilesY * 0.000150); i++ )
 				WorldGenUtils.TileRunner( WorldGen.genRand.Next( 0, Main.maxTilesX ), WorldGen.genRand.Next( (int)rockLayerMin, Main.maxTilesY ), WorldGen.genRand.Next( 5, 9 ), WorldGen.genRand.Next( 4, 8 ), silverOreId );
 			progress.Message = "Shinies 6";
@@ -1825,7 +1825,7 @@ namespace TerrariaReworked
 		{
 			if( MyWorld.evilCombo == EvilCombo.Crimson )
 			{
-				progress.Message = Lang.gen[72].Value;
+				progress.Message = Lang.gen[20].Value;
 				int num = 0;
 				while( (double)num < (double)Main.maxTilesX * 0.00045 )
 				{
@@ -2053,10 +2053,10 @@ namespace TerrariaReworked
 				WorldGenUtils.corruptGrass = (ushort)ModMain.instance.TileType( "CessatedGrass" );
 
 				progress.Message = Lang.gen[20].Value;
-				int num19 = 0;
-				while( (double)num19 < (double)Main.maxTilesX * 0.00045 )
+				int perc = 0;
+				while( perc < Main.maxTilesX * 0.00045 )
 				{
-					progress.Set( (float)((double)num19 / ((double)Main.maxTilesX * 0.00045)) );
+					progress.Set( (float)(perc / (Main.maxTilesX * 0.00045)) );
 
 					bool flag5 = false;
 					int xLonger = 0;
@@ -2066,7 +2066,7 @@ namespace TerrariaReworked
 					{
 						int num23 = 0;
 						flag5 = true;
-						int num24 = Main.maxTilesX / 2;
+						int centerX = Main.maxTilesX / 2;
 						int num25 = 200;
 						xLonger = WorldGen.genRand.Next( 320, Main.maxTilesX - 320 );
 						firstX = xLonger - WorldGen.genRand.Next( 200 ) - 100;
@@ -2079,15 +2079,15 @@ namespace TerrariaReworked
 						{
 							lastX = Main.maxTilesX - 285;
 						}
-						if( xLonger > num24 - num25 && xLonger < num24 + num25 )
+						if( xLonger > centerX - num25 && xLonger < centerX + num25 )
 						{
 							flag5 = false;
 						}
-						if( firstX > num24 - num25 && firstX < num24 + num25 )
+						if( firstX > centerX - num25 && firstX < centerX + num25 )
 						{
 							flag5 = false;
 						}
-						if( lastX > num24 - num25 && lastX < num24 + num25 )
+						if( lastX > centerX - num25 && lastX < centerX + num25 )
 						{
 							flag5 = false;
 						}
@@ -2125,7 +2125,7 @@ namespace TerrariaReworked
 						}
 					}
 					int num28 = 0;
-					for( int chasmX = firstX; chasmX < lastX; chasmX++ )
+					/*for( int chasmX = firstX; chasmX < lastX; chasmX++ )
 					{
 						if( num28 > 0 )
 						{
@@ -2134,7 +2134,7 @@ namespace TerrariaReworked
 						if( chasmX == xLonger || num28 == 0 )
 						{
 							int chasmY = (int)worldSurfaceMin;
-							while( (double)chasmY < Main.worldSurface - 1.0 )
+							while( chasmY < Main.worldSurface - 1.0 )
 							{
 								if( Main.tile[chasmX, chasmY].active() || (Main.tile[chasmX, chasmY].wall > 0 && Main.tile[chasmX, chasmY].wall != WallID.Cloud) )
 								{
@@ -2176,7 +2176,11 @@ namespace TerrariaReworked
 							}
 							yMin++;
 						}
-					}
+					}*/
+					int posX = (firstX + lastX) / 2;
+					int posY = (int)Main.worldSurface;
+					WorldGenUtils.TileRunner( posX, posY, 100, 20, -1 );
+
 					double yMarch = Main.worldSurface + 40.0;
 					for( int x = firstX; x < lastX; x++ )
 					{
@@ -2192,7 +2196,7 @@ namespace TerrariaReworked
 						int m = x;
 						bool flag6 = false;
 						int n = (int)worldSurfaceMin;
-						while( (double)n < yMarch )
+						while( n < yMarch )
 						{
 							if( Main.tile[m, n].active() )
 							{
@@ -2200,7 +2204,7 @@ namespace TerrariaReworked
 								{
 									Main.tile[m, n].type = WorldGenUtils.corruptSand;
 								}
-								if( Main.tile[m, n].type == TileID.Dirt && (double)n < Main.worldSurface - 1.0 && !flag6 )
+								if( Main.tile[m, n].type == TileID.Dirt && n < Main.worldSurface - 1.0 && !flag6 )
 								{
 									grassSpread = 0;
 									WorldGen.SpreadGrass( m, n, TileID.Dirt, WorldGenUtils.corruptGrass, true, 0 );
@@ -2273,7 +2277,7 @@ namespace TerrariaReworked
 							}
 						}
 					}
-					num19++;
+					perc++;
 				}
 			}
 			else

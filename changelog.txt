@@ -5,6 +5,7 @@
 ##
 
 - The pre-hardmode ores that generate now depend on the biome combo chosen.
+- Added Cessation
 
 - Added 4 items:
 - - Lead Ring

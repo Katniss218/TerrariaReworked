@@ -17,7 +17,7 @@ namespace TerrariaReworked.Tiles
 			dustType = mod.DustType( "Sparkle" );
 
 			drop = mod.ItemType( "Rotstone" );
-			AddMapEntry( new Color( 15, 15, 15 ) );
+			AddMapEntry( new Color( 20, 90, 40 ) );
 			this.soundType = 21; // metallic 'click' sound on break.
 		}
 

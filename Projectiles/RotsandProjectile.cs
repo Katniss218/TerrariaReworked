@@ -8,8 +8,6 @@ namespace TerrariaReworked.Projectiles
 	public class RotsandProjectile : ModProjectile
 	{
 		protected bool falling = true;
-		protected int tileType;
-		protected int dustType;
 
 		public override void SetStaticDefaults()
 		{
@@ -26,8 +24,6 @@ namespace TerrariaReworked.Projectiles
 			projectile.hostile = true;
 			projectile.penetrate = -1;
 			//Set the tile type to ExampleSand
-			tileType = mod.TileType( "Rotsand" );
-			dustType = mod.DustType( "Sparkle" );
 		}
 
 		public override void AI()
@@ -35,7 +31,7 @@ namespace TerrariaReworked.Projectiles
 			//Change the 5 to determine how much dust will spawn. lower for more, higher for less
 			if( Main.rand.Next( 5 ) == 0 )
 			{
-				int dust = Dust.NewDust( projectile.position, projectile.width, projectile.height, dustType );
+				int dust = Dust.NewDust( projectile.position, projectile.width, projectile.height, mod.DustType( "placeholder" ) );
 				Main.dust[dust].velocity.X *= 0.4f;
 			}
 
@@ -103,9 +99,9 @@ namespace TerrariaReworked.Projectiles
 					bool onMinecartTrack = tileY < Main.maxTilesY - 2 && tileBelow != null && tileBelow.active() && tileBelow.type == TileID.MinecartTrack;
 
 					if( !onMinecartTrack )
-						WorldGen.PlaceTile( tileX, tileY, tileType, false, true );
+						WorldGen.PlaceTile( tileX, tileY, mod.TileType( "Rotsand" ), false, true );
 
-					if( !onMinecartTrack && tile.active() && tile.type == tileType )
+					if( !onMinecartTrack && tile.active() && tile.type == mod.TileType( "Rotsand" ) )
 					{
 						if( tileBelow.halfBrick() || tileBelow.slope() != 0 )
 						{
@@ -116,7 +112,7 @@ namespace TerrariaReworked.Projectiles
 						}
 
 						if( Main.netMode != NetmodeID.SinglePlayer )
-							NetMessage.SendData( 17, -1, -1, null, 1, tileX, tileY, tileType );
+							NetMessage.SendData( 17, -1, -1, null, 1, tileX, tileY, mod.TileType( "Rotsand" ) );
 					}
 				}
 			}

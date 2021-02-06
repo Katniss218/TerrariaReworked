@@ -42,7 +42,7 @@ namespace TerrariaReworked.Tiles
 
 			drop = 0; // drops dirt.
 
-			AddMapEntry( new Color( 110, 132, 100 ) );
+			AddMapEntry( new Color( 50, 132, 60 ) );
 			this.soundType = 0;
 		}
 		
